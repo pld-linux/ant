@@ -3,12 +3,16 @@ Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
-Version:	1.6.1
-Release:	1
+Version:	1.6.2
+%define		_beta	beta1
+#define		_beta	%{nil}
+Release:	0.%{_beta}.1
+#Release:	1
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
-# Source0-md5:	3e1f06aae6b691543299ccb1a5cb038f
+#Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
+Source0:	http://cvs.apache.org/dist/ant/v%{version}%{_beta}/src/apache-ant-%{version}%{_beta}-src.tar.bz2
+# Source0-md5:	4e775cbcb8cb61b015f75d31cec034d5
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
@@ -18,8 +22,6 @@ Provides:	xerces-j = 2.6.1
 Obsoletes:	xerces-j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_javaclassdir	%{_datadir}/java
 
 %description
 Platform-independent build tool for Java. Ant is a Java based build
@@ -54,7 +56,7 @@ Dokumentacja do ant - niezale¿nego od platformy narzêdzia do budowania
 w Javie.
 
 %prep
-%setup -q -n apache-ant-%{version}
+%setup -q -n apache-ant-%{version}%{_beta}
 %patch0 -p1
 
 %build
@@ -62,25 +64,24 @@ if [ -z "$JAVA_HOME" ]; then
 	JAVA_HOME=/usr/lib/java
 fi
 export JAVA_HOME
-
 sh build.sh
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_bindir}
-install -d $RPM_BUILD_ROOT%{_javaclassdir}
+install -d $RPM_BUILD_ROOT%{_javadir}
 install bootstrap/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
-install bootstrap/lib/ant-*.jar $RPM_BUILD_ROOT%{_javaclassdir}
-install bootstrap/lib/ant.jar $RPM_BUILD_ROOT%{_javaclassdir}/ant-%{version}.jar
-ln -sf ant-%{version}.jar $RPM_BUILD_ROOT%{_javaclassdir}/ant.jar
+install bootstrap/lib/ant-*.jar $RPM_BUILD_ROOT%{_javadir}
+install bootstrap/lib/ant.jar $RPM_BUILD_ROOT%{_javadir}/ant-%{version}.jar
+ln -sf ant-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/ant.jar
 
 # xerces-j 2.6.1
-install bootstrap/lib/xercesImpl.jar $RPM_BUILD_ROOT%{_javaclassdir}
-ln -sf xercesImpl.jar $RPM_BUILD_ROOT%{_javaclassdir}/jaxp_parser_impl.jar
+install bootstrap/lib/xercesImpl.jar $RPM_BUILD_ROOT%{_javadir}
+ln -sf xercesImpl.jar $RPM_BUILD_ROOT%{_javadir}/jaxp_parser_impl.jar
 
 # this looks strange
-ln -sf . $RPM_BUILD_ROOT%{_javaclassdir}/lib
+ln -sf . $RPM_BUILD_ROOT%{_javadir}/lib
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -92,8 +93,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/antRun
 %attr(755,root,root) %{_bindir}/runant.pl
 %attr(755,root,root) %{_bindir}/runant.py
-%{_javaclassdir}/lib
-%{_javaclassdir}/*.jar
+%{_javadir}/lib
+%{_javadir}/*.jar
 
 %files doc
 %defattr(644,root,root,755)
