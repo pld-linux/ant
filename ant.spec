@@ -9,13 +9,11 @@ Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
-BuildRequires:	java-env
 Requires:	jdk
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_javalibdir	/usr/share/java
-%define		javacfgdir	/etc/sysconfig/java
+%define		_javaclassdir	%{_datadir}/java
 
 %description
 Platform-independent build tool for Java. Ant is a Java based build
@@ -55,17 +53,14 @@ sh build.sh
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_bindir}
-install -d $RPM_BUILD_ROOT%{_javalibdir}
+install -d $RPM_BUILD_ROOT%{_javaclassdir}
 install bootstrap/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
-install bootstrap/lib/optional.jar $RPM_BUILD_ROOT%{_javalibdir}
-install bootstrap/lib/ant.jar $RPM_BUILD_ROOT%{_javalibdir}/ant-%{version}.jar
-ln -sf ant-%{version}.jar $RPM_BUILD_ROOT%{_javalibdir}/ant.jar
+install bootstrap/lib/optional.jar $RPM_BUILD_ROOT%{_javaclassdir}
+install bootstrap/lib/ant.jar $RPM_BUILD_ROOT%{_javaclassdir}/ant-%{version}.jar
+ln -sf ant-%{version}.jar $RPM_BUILD_ROOT%{_javaclassdir}/ant.jar
 
 # this looks strange
-ln -sf . $RPM_BUILD_ROOT%{_javalibdir}/lib
-
-install -d $RPM_BUILD_ROOT%{javacfgdir}
-javacpmgr --findjars $RPM_BUILD_ROOT > $RPM_BUILD_ROOT%{javacfgdir}/cp.%{name}
+ln -sf . $RPM_BUILD_ROOT%{_javaclassdir}/lib
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,9 +72,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/antRun
 %attr(755,root,root) %{_bindir}/runant.pl
 %attr(755,root,root) %{_bindir}/runant.py
-%{_javalibdir}/lib
-%{_javalibdir}/*.jar
-%config(noreplace) %verify(not size mtime md5) %{javacfgdir}/cp.*
+%{_javaclassdir}/lib
+%{_javaclassdir}/*.jar
 
 %files doc
 %defattr(644,root,root,755)
