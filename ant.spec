@@ -1,4 +1,9 @@
 # TODO: consider using external xerces-j
+#
+# Conditional build:
+%bcond_with     basic_functionality       # generates package with only
+					  # basic functionality, i.e. no deps
+#
 Summary:	ant build tool for Java
 Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
@@ -14,6 +19,7 @@ Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
+%if %{without basic_functionality}
 BuildRequires:	jakarta-regexp >= 1.3
 BuildRequires:	jakarta-oro >= 2.0.7
 BuildRequires:	junit
@@ -37,6 +43,7 @@ BuildRequires:	jsse
 BuildRequires:	jaf
 BuildRequires:	jsch
 # BuildRequires:	JAI
+%endif
 Requires:	jdk
 Provides:	jaxp_parser_impl
 Provides:	xerces-j = 2.6.2
