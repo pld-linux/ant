@@ -28,3 +28,14 @@
  fi
  
  # For Cygwin, ensure paths are in UNIX format before anything is touched
+@@ -50,6 +50,10 @@
+     CLASSPATH=`cygpath --path --unix "$CLASSPATH"`
+ fi
+ 
++if [ -z "$JAVA_HOME" -a -x /usr/lib/java/bin/java ]; then
++	JAVA_HOME=/usr/lib/java
++fi
++
+ if [ -z "$JAVACMD" ] ; then 
+   if [ -n "$JAVA_HOME"  ] ; then
+     if [ -x "$JAVA_HOME/jre/sh/java" ] ; then 

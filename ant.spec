@@ -10,6 +10,7 @@ Source1:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/bin/%{name
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://jakarta.apache.org/ant/
 BuildRequires:	jdk
+Requires:	jdk
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,13 +43,11 @@ w Javie.
 %patch0 -p1
 
 %build
-if [ ! `echo $JAVA_HOME` ]; then 
-	echo "You haven't JAVA_HOME variable set. Can't continue."
-	exit 1
+if [ -z "$JAVA_HOME" ]; then
+	JAVA_HOME=/usr/lib/java
 fi
-
 CLASSPATH="$JAVA_HOME/jre/lib/rt.jar:%{SOURCE1}"
-export CLASSPATH
+export JAVA_HOME CLASSPATH
 
 cp -f %{SOURCE1} .
 sh build.sh
