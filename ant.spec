@@ -5,7 +5,7 @@ Summary(it):	Tool per la compilazione di programmi java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
 Version:	1.6.2
-Release:	1
+Release:	2
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
@@ -14,6 +14,29 @@ Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
+BuildRequires:	jakarta-regexp >= 1.3
+BuildRequires:	jakarta-oro >= 2.0.7
+BuildRequires:	junit
+BuildRequires:	xalan-j
+BuildRequires:	antlr
+BuildRequires:	bsf >= 2.3.0
+# BuildRequires:	netrexx
+BuildRequires:	rhino >= 1.5R3
+BuildRequires:	jython
+# BuildRequires:	jacl
+# BuildRequires:	tcljava
+# BuildRequires:	BeanShell >= 1.3
+# BuildRequires:	jruby
+# BuildRequires:	judo
+BuildRequires:	jakarta-commons-logging
+BuildRequires:	jakarta-log4j
+BuildRequires:	jakarta-commons-net >= 1.2.2
+BuildRequires:	jakarta-bcel
+BuildRequires:	javamail
+BuildRequires:	jsse
+BuildRequires:	jaf
+BuildRequires:	jsch
+# BuildRequires:	JAI
 Requires:	jdk
 Provides:	jaxp_parser_impl
 Provides:	xerces-j = 2.6.2
