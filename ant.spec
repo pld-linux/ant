@@ -3,6 +3,8 @@
 # Conditional build:
 %bcond_with     basic_functionality       # generates package with only
 					  # basic functionality, i.e. no deps
+
+%define		__rel	3
 #
 Summary:	ant build tool for Java
 Summary(fr):	Outil de compilation pour java
@@ -10,7 +12,11 @@ Summary(it):	Tool per la compilazione di programmi java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
 Version:	1.6.2
-Release:	3
+%if %{with basic_functionality}
+Release:	0.basic.%{__rel}
+%else
+Release:	%{__rel}
+%endif
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
