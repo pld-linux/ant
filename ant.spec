@@ -1,3 +1,4 @@
+# TODO: consider using external xerces-j
 Summary:	ant build tool for Java
 Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
@@ -5,7 +6,6 @@ Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
 Version:	1.6.2
 Release:	1
-#Release:	1
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
@@ -16,7 +16,6 @@ URL:		http://ant.apache.org/
 BuildRequires:	jdk
 Requires:	jdk
 Provides:	jaxp_parser_impl
-Provides:	jaxp_transform_impl
 Provides:	xerces-j = 2.6.2
 Obsoletes:	xerces-j
 BuildArch:	noarch
@@ -60,22 +59,21 @@ w Javie.
 
 %build
 if [ -z "$JAVA_HOME" ]; then
-	JAVA_HOME=/usr/lib/java
+	JAVA_HOME=%{_libdir}/java
 fi
 export JAVA_HOME
 sh build.sh
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_javadir}}
 
-install -d $RPM_BUILD_ROOT%{_bindir}
-install -d $RPM_BUILD_ROOT%{_javadir}
 install bootstrap/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
 install bootstrap/lib/ant-*.jar $RPM_BUILD_ROOT%{_javadir}
 install bootstrap/lib/ant.jar $RPM_BUILD_ROOT%{_javadir}/ant-%{version}.jar
 ln -sf ant-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/ant.jar
 
-# xerces-j 2.6.1
+# xerces-j 2.6.2
 install bootstrap/lib/xercesImpl.jar $RPM_BUILD_ROOT%{_javadir}
 ln -sf xercesImpl.jar $RPM_BUILD_ROOT%{_javadir}/jaxp_parser_impl.jar
 
