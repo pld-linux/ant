@@ -59,7 +59,7 @@ install -d $RPM_BUILD_ROOT%{_javalibdir}
 install bootstrap/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
 install bootstrap/lib/optional.jar $RPM_BUILD_ROOT%{_javalibdir}
 install bootstrap/lib/ant.jar $RPM_BUILD_ROOT%{_javalibdir}/ant-%{version}.jar
-ln -sf %{_javalibdir}/ant-%{version}.jar $RPM_BUILD_ROOT%{_javalibdir}/ant.jar
+ln -sf ant-%{version}.jar $RPM_BUILD_ROOT%{_javalibdir}/ant.jar
 
 # this looks strange
 ln -sf . $RPM_BUILD_ROOT%{_javalibdir}/lib
