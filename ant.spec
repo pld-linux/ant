@@ -1,12 +1,12 @@
 Summary:	ant build tool for Java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
-Version:	1.5.4
+Version:	1.6.1
 Release:	1
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
-# Source0-md5:	bfac23721c24e77d0b1c383200327ff6
+# Source0-md5:	3e1f06aae6b691543299ccb1a5cb038f
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
@@ -56,7 +56,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 install -d $RPM_BUILD_ROOT%{_javaclassdir}
 install bootstrap/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
-install bootstrap/lib/optional.jar $RPM_BUILD_ROOT%{_javaclassdir}
+install bootstrap/lib/ant-*.jar $RPM_BUILD_ROOT%{_javaclassdir}
+install bootstrap/lib/xercesImpl.jar $RPM_BUILD_ROOT%{_javaclassdir}
 install bootstrap/lib/ant.jar $RPM_BUILD_ROOT%{_javaclassdir}/ant-%{version}.jar
 ln -sf ant-%{version}.jar $RPM_BUILD_ROOT%{_javaclassdir}/ant.jar
 
