@@ -1,7 +1,7 @@
 Summary:	ant build tool for Java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
-Version:	1.5.2
+Version:	1.5.3
 Release:	1
 License:	Apache
 Group:		Development/Languages/Java
