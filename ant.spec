@@ -11,6 +11,8 @@ Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
 Requires:	jdk
+Provides:	xerces-j = 2.6.1
+Obsoletes:	xerces-j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
