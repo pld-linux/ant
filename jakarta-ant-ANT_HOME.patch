@@ -1,6 +1,7 @@
---- jakarta-ant-1.4.1/src/script/ant.wiget	Thu Oct 11 15:58:30 2001
-+++ jakarta-ant-1.4.1/src/script/ant	Thu Mar 21 15:02:29 2002
-@@ -14,13 +14,13 @@
+diff -urN jakarta-ant-1.5.1.org/src/script/ant jakarta-ant-1.5.1/src/script/ant
+--- jakarta-ant-1.5.1.org/src/script/ant	Wed Nov 27 00:01:16 2002
++++ jakarta-ant-1.5.1/src/script/ant	Wed Nov 27 00:06:27 2002
+@@ -35,13 +35,13 @@
  
  if [ -z "$ANT_HOME" ] ; then
    # try to find ANT
@@ -11,29 +12,29 @@
      ANT_HOME=/opt/ant
 -  fi
 -
--  if [ -d ${HOME}/opt/ant ] ; then 
-+  elif [ -d ${HOME}/opt/ant ] ; then 
-     ANT_HOME=${HOME}/opt/ant
+-  if [ -d "${HOME}/opt/ant" ] ; then 
++  elif [ -d "${HOME}/opt/ant" ] ; then 
+     ANT_HOME="${HOME}/opt/ant"
 -  fi
-+  else	
++  else
  
    ## resolve links - $0 may be a link to ant's home
-   PRG=$0
-@@ -37,7 +37,7 @@
-   done
-   
-   ANT_HOME=`dirname "$PRG"`/..
--
-+  fi
- fi
+   PRG="$0"
+@@ -65,6 +65,8 @@
  
- # For Cygwin, ensure paths are in UNIX format before anything is touched
-@@ -50,6 +50,10 @@
-     CLASSPATH=`cygpath --path --unix "$CLASSPATH"`
+   cd "$saveddir"
+ 
++  fi
++
+   # make it fully qualified
+   ANT_HOME=`cd "$ANT_HOME" && pwd`
  fi
+@@ -82,6 +84,10 @@
+ # set ANT_LIB location
+ ANT_LIB="${ANT_HOME}/lib"
  
 +if [ -z "$JAVA_HOME" -a -x /usr/lib/java/bin/java ]; then
-+	JAVA_HOME=/usr/lib/java
++  JAVA_HOME=/usr/lib/java
 +fi
 +
  if [ -z "$JAVACMD" ] ; then 
