@@ -7,7 +7,7 @@ License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/%{name}-%{version}-src.tar.bz2
 Patch0:		%{name}-ANT_HOME.patch
-URL:		http://jakarta.apache.org/ant/
+URL:		http://ant.apache.org/
 BuildRequires:	jdk
 BuildRequires:	java-env
 Requires:	jdk
