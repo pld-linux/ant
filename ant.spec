@@ -6,6 +6,7 @@ Release:	1
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
+# Source0-md5:	14e23b7912167ebe9dc4ae004edf5bce
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
