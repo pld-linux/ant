@@ -11,6 +11,7 @@ Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
 Requires:	jdk
+Provides:	jaxp_parser_impl
 Provides:	xerces-j = 2.6.1
 Obsoletes:	xerces-j
 BuildArch:	noarch
@@ -59,9 +60,12 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 install -d $RPM_BUILD_ROOT%{_javaclassdir}
 install bootstrap/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
 install bootstrap/lib/ant-*.jar $RPM_BUILD_ROOT%{_javaclassdir}
-install bootstrap/lib/xercesImpl.jar $RPM_BUILD_ROOT%{_javaclassdir}
 install bootstrap/lib/ant.jar $RPM_BUILD_ROOT%{_javaclassdir}/ant-%{version}.jar
 ln -sf ant-%{version}.jar $RPM_BUILD_ROOT%{_javaclassdir}/ant.jar
+
+# xerces-j 2.6.1
+install bootstrap/lib/xercesImpl.jar $RPM_BUILD_ROOT%{_javaclassdir}
+ln -sf xercesImpl.jar $RPM_BUILD_ROOT%{_javaclassdir}/jaxp_parser_impl.jar
 
 # this looks strange
 ln -sf . $RPM_BUILD_ROOT%{_javaclassdir}/lib
