@@ -1,14 +1,13 @@
 Summary:	ant build tool for Java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
-Version:	1.5.3
-Release:	2
+Version:	1.5.4
+Release:	1
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
-# Source0-md5:	14e23b7912167ebe9dc4ae004edf5bce
+# Source0-md5:	bfac23721c24e77d0b1c383200327ff6
 Patch0:		%{name}-ANT_HOME.patch
-Patch1:		%{name}-jdk1.4.2.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
 Requires:	jdk
@@ -42,7 +41,6 @@ w Javie.
 %prep
 %setup -q -n apache-ant-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 if [ -z "$JAVA_HOME" ]; then
