@@ -4,15 +4,13 @@ Summary(it):	Tool per la compilazione di programmi java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
 Version:	1.6.2
-%define		_beta	beta1
-#define		_beta	%{nil}
-Release:	0.%{_beta}.1
+Release:	1
 #Release:	1
 License:	Apache
 Group:		Development/Languages/Java
-#Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
-Source0:	http://cvs.apache.org/dist/ant/v%{version}%{_beta}/src/apache-ant-%{version}%{_beta}-src.tar.bz2
-# Source0-md5:	4e775cbcb8cb61b015f75d31cec034d5
+Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
+# Source0-md5:	83c3adefdbf90bcbc4b804d4c55c0778
+#Source0:	http://cvs.apache.org/dist/ant/v%{version}%{_beta}/src/apache-ant-%{version}%{_beta}-src.tar.bz2
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
@@ -57,7 +55,7 @@ Dokumentacja do ant - niezale¿nego od platformy narzêdzia do budowania
 w Javie.
 
 %prep
-%setup -q -n apache-ant-%{version}%{_beta}
+%setup -q -n apache-ant-%{version}
 %patch0 -p1
 
 %build
