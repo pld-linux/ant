@@ -5,7 +5,7 @@ Version:	1.5.1
 Release:	1
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/src/%{name}-%{version}-src.tar.gz
+Source0:	http://www.apache.org/dist/ant/source/%{name}-%{version}-src.tar.bz2
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://jakarta.apache.org/ant/
 BuildRequires:	jdk
