@@ -17,7 +17,7 @@ BuildRequires:	jdk
 Requires:	jdk
 Provides:	jaxp_parser_impl
 Provides:	jaxp_transform_impl
-Provides:	xerces-j = 2.6.1
+Provides:	xerces-j = 2.6.2
 Obsoletes:	xerces-j
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
