@@ -18,6 +18,7 @@ URL:		http://ant.apache.org/
 BuildRequires:	jdk
 Requires:	jdk
 Provides:	jaxp_parser_impl
+Provides:	jaxp_transform_impl
 Provides:	xerces-j = 2.6.1
 Obsoletes:	xerces-j
 BuildArch:	noarch
