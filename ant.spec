@@ -7,6 +7,7 @@ License:	Apache Software License
 Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/src/%{name}-%{version}-src.tar.gz
 Source1:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/bin/%{name}-%{version}-optional.jar
+Patch0:		%{name}-ANT_HOME.patch
 URL:		http://jakarta.apache.org/ant/
 BuildRequires:	jdk
 BuildArch:	noarch
@@ -38,11 +39,11 @@ w Javie.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 JAVA_HOME="%{_libdir}/java"
-CLASSPATH="$CLASSPATH:$JAVA_HOME/jre/lib/rt.jar"
-CLASSPATH="$CLASSPATH:$RPM_BUILD_DIR/%{name}-%{version}/%{name}-1.3-optional.jar"
+CLASSPATH="$JAVA_HOME/jre/lib/rt.jar:%{SOURCE1}"
 export JAVA_HOME CLASSPATH
 
 cp -f %{SOURCE1} .
@@ -56,7 +57,8 @@ install -d $RPM_BUILD_ROOT%{_javalibdir}
 install bootstrap/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
 install bootstrap/lib/*.jar $RPM_BUILD_ROOT%{_javalibdir}
 
-ln -sf %{_javalibdir} $RPM_BUILD_ROOT%{_javalibdir}/lib
+# this looks strange
+ln -sf . $RPM_BUILD_ROOT%{_javalibdir}/lib
 
 gzip -9nf KEYS LICENSE README WHATSNEW
 
