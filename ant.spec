@@ -1,7 +1,7 @@
 # TODO: consider using external xerces-j
 #
 # Conditional build:
-%bcond_with     basic_functionality       # generates package with only
+%bcond_with	basic_functionality       # generates package with only
 					  # basic functionality, i.e. no deps
 
 %define		__rel	3
