@@ -5,7 +5,7 @@ Summary(it):	Tool per la compilazione di programmi java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
 Version:	1.6.2
-Release:	2
+Release:	3
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
@@ -91,13 +91,13 @@ sh build.sh
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_javadir}}
 
-install bootstrap/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
-install bootstrap/lib/ant-*.jar $RPM_BUILD_ROOT%{_javadir}
-install bootstrap/lib/ant.jar $RPM_BUILD_ROOT%{_javadir}/ant-%{version}.jar
+install dist/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
+install dist/lib/ant-*.jar $RPM_BUILD_ROOT%{_javadir}
+install dist/lib/ant.jar $RPM_BUILD_ROOT%{_javadir}/ant-%{version}.jar
 ln -sf ant-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/ant.jar
 
 # xerces-j 2.6.2
-install bootstrap/lib/xercesImpl.jar $RPM_BUILD_ROOT%{_javadir}
+install dist/lib/x*.jar $RPM_BUILD_ROOT%{_javadir}
 ln -sf xercesImpl.jar $RPM_BUILD_ROOT%{_javadir}/jaxp_parser_impl.jar
 
 # this looks strange
