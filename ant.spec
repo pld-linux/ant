@@ -1,4 +1,6 @@
 Summary:	ant build tool for Java
+Summary(fr):	Outil de compilation pour java                                                                             
+Summary(it):	Tool per la compilazione di programmi java                                                                 
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
 Version:	1.6.1
@@ -22,6 +24,16 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Platform-independent build tool for Java. Ant is a Java based build
 system. Ant is used by apache jakarta & xml projects.
+
+%description -l fr                                                                                                         
+Ant est un outil de compilation multi-plateformes pour java. Il est
+utilisé par les projets apache-jakarta et apache-xml.
+
+%description -l it
+Ant e' un tool indipendente dalla piattaforma creato per faciltare la
+compilazione di programmi java.
+Allo stato attuale viene utilizzato dai progetti apache jakarta ed
+apache xml.
 
 %description -l pl
 Niezale¿ne od platformy narzêdzie do budowania w Javie. Ant jest
