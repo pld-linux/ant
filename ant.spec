@@ -1,15 +1,15 @@
 Summary: 	ant build tool for java
 Summary(pl):	ant narzedzie do budowania w javie
 Name:		jakarta-ant
-Version:	1.4
+Version:	1.4.1
 Release:	1
 License:	Apache Software License
 Group:		Development/Languages/Java
 Group(de):	Entwicklung/Sprachen/Java
 Group(pl):	Programowanie/Jêzyki/Java
 Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/src/%{name}-%{version}-src.tar.gz
-Source1:	%{name}-1.3-optional.jar
-URL:		http://jakarta.apache.org
+Source1:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/bin/%{name}-%{version}-optional.jar
+URL:		http://jakarta.apache.org/ant/
 BuildRequires:	ibm-java-sdk
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -23,7 +23,6 @@ Ant is used by apache jakarta&xml projects.
 
 %package doc
 Group: 			Documentation
-Requires: 		webserver
 Summary: 		Online manual for ant
 Obsoletes:		ant-doc
 
