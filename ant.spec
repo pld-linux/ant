@@ -2,8 +2,8 @@ Summary:	ant build tool for Java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
 Version:	1.4.1
-Release:	3
-License:	Apache Software License
+Release:	4
+License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/src/%{name}-%{version}-src.tar.gz
 Source1:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/bin/%{name}-%{version}-optional.jar
@@ -64,14 +64,12 @@ install bootstrap/lib/*.jar $RPM_BUILD_ROOT%{_javalibdir}
 # this looks strange
 ln -sf . $RPM_BUILD_ROOT%{_javalibdir}/lib
 
-gzip -9nf KEYS LICENSE README WHATSNEW
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc KEYS LICENSE README WHATSNEW
 %attr(755,root,root) %{_bindir}/ant
 %attr(755,root,root) %{_bindir}/antRun
 %attr(755,root,root) %{_bindir}/runant.pl
