@@ -5,8 +5,6 @@ Version:	1.4.1
 Release:	1
 License:	Apache Software License
 Group:		Development/Languages/Java
-Group(de):	Entwicklung/Sprachen/Java
-Group(pl):	Programowanie/Jêzyki/Java
 Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/src/%{name}-%{version}-src.tar.gz
 Source1:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/bin/%{name}-%{version}-optional.jar
 URL:		http://jakarta.apache.org/ant/
@@ -28,9 +26,6 @@ u¿ywany przez projekty apache jakarta i xml.
 Summary:	Online manual for ant
 Summary(pl):	Dokumentacja online do ant
 Group:		Documentation
-Group(de):	Dokumentation
-Group(es):	Documentación
-Group(pl):	Dokumentacja
 Obsoletes:	ant-doc
 
 %description doc
