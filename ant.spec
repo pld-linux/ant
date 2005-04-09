@@ -94,9 +94,7 @@ w Javie.
 %patch0 -p1
 
 %build
-if [ -z "$JAVA_HOME" ]; then
-	JAVA_HOME=%{_libdir}/java
-fi
+JAVA_HOME=%{_libdir}/java
 export JAVA_HOME
 sh build.sh
 
