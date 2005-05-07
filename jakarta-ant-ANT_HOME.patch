@@ -1,31 +1,20 @@
---- apache-ant-1.6.1/src/script/ant.fix	2004-03-31 20:54:36.093281896 +0200
-+++ apache-ant-1.6.1/src/script/ant	2004-03-31 20:55:32.140761384 +0200
-@@ -47,14 +47,13 @@
+--- apache-ant-1.6.3/src/script/ant.orig	2005-04-28 15:43:12.000000000 +0200
++++ apache-ant-1.6.3/src/script/ant	2005-05-07 11:48:33.504821320 +0200
+@@ -87,6 +87,9 @@
+ esac
  
  if [ -z "$ANT_HOME" -o ! -d "$ANT_HOME" ] ; then
-   # try to find ANT
--  if [ -d /opt/ant ] ; then
-+  if [ -f /usr/share/java/ant.jar ] ; then
++  if [ -f /usr/share/java/ant.jar ]; then
 +    ANT_HOME=/usr/share/java
-+  elif [ -d /opt/ant ] ; then
-     ANT_HOME=/opt/ant
--  fi
--
--  if [ -d "${HOME}/opt/ant" ] ; then
-+  elif [ -d "${HOME}/opt/ant" ] ; then
-     ANT_HOME="${HOME}/opt/ant"
--  fi
--
 +  else
    ## resolve links - $0 may be a link to ant's home
    PRG="$0"
    progname=`basename "$0"`
-@@ -71,7 +70,7 @@
-   done
+@@ -106,6 +109,7 @@
  
-   ANT_HOME=`dirname "$PRG"`/..
--
-+  fi
    # make it fully qualified
    ANT_HOME=`cd "$ANT_HOME" && pwd`
++  fi
  fi
+ 
+ # For Cygwin, ensure paths are in UNIX format before anything is touched
