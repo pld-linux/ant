@@ -24,6 +24,7 @@ URL:		http://ant.apache.org/
 BuildRequires:	jdk
 %if %{without basic_functionality}
 BuildRequires:	antlr
+BuildRequires:	beanshell
 BuildRequires:	bsf >= 2.3.0
 BuildRequires:	jaf
 BuildRequires:	jakarta-bcel
