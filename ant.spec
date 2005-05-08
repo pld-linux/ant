@@ -1,8 +1,9 @@
 # TODO: consider using external xerces-j
 #
 # Conditional build:
-%bcond_with	basic_functionality       # generates package with only
-					  # basic functionality, i.e. no deps
+%bcond_with	basic_functionality	# generates package with only
+					# basic functionality, i.e. no deps
+%bcond_without	junit			# build without (commonly used) junit support
 #
 Summary:	ant build tool for Java
 Summary(fr):	Outil de compilation pour java
@@ -22,6 +23,7 @@ Source0:	http://www.apache.org/dist/ant/source/apache-ant-%{version}-src.tar.bz2
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://ant.apache.org/
 BuildRequires:	jdk
+%{?with_junit:BuildRequires:	junit}
 %if %{without basic_functionality}
 BuildRequires:	antlr
 BuildRequires:	beanshell
@@ -35,7 +37,6 @@ BuildRequires:	jakarta-oro >= 2.0.7
 BuildRequires:	jakarta-regexp >= 1.3
 BuildRequires:	javamail
 BuildRequires:	jsch
-BuildRequires:	junit
 BuildRequires:	netrexx
 BuildRequires:	xalan-j
 BuildRequires:	rhino >= 1.5R3
@@ -43,6 +44,7 @@ BuildRequires:	xml-commons-resolver >= 1.1
 # TODO: icontract, jai, jdepend, starteam, stylebook, vaj, weblogic, xslp
 %endif
 Requires:	jdk
+%{?with_junit:Provides:	jakarta-ant(junit) = %{version}}
 Provides:	jaxp_parser_impl
 Provides:	xerces-j = 2.6.2
 Obsoletes:	xerces-j
@@ -86,8 +88,9 @@ w Javie.
 %patch0 -p1
 
 %build
-JAVA_HOME=%{_libdir}/java
-export JAVA_HOME
+export JAVA_HOME=%{_libdir}/java
+# the same is probably needed for all other optional packages
+%{?with_junit:export CLASSPATH=%{_javadir}/junit.jar}
 sh build.sh
 
 %install
