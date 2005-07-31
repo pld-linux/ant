@@ -41,6 +41,7 @@ BuildRequires:	netrexx
 BuildRequires:	xalan-j
 BuildRequires:	rhino >= 1.5R3
 BuildRequires:	xml-commons-resolver >= 1.1
+BuildRequires:	rpm-pythonprov
 # TODO: icontract, jai, jdepend, starteam, stylebook, vaj, weblogic, xslp
 %endif
 Requires:	jdk
