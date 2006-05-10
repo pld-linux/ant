@@ -1,4 +1,6 @@
-# TODO: consider using external xerces-j
+# TODO
+# - consider using external xerces-j
+# - add lots of subpackages like here: http://www.jpackage.org/rpm.php?id=912 ?
 #
 # Conditional build:
 %bcond_with	basic_functionality	# generates package with only
