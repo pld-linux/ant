@@ -1,0 +1,31 @@
+--- apache-ant-1.6.2/src/script/ant~	2004-07-16 08:56:50.000000000 +0100
++++ apache-ant-1.6.2/src/script/ant	2004-11-05 15:14:23.000000000 +0000
+@@ -159,6 +159,28 @@
+ # variable
+ if $rpm_mode && [ -f /usr/bin/build-classpath ] ; then
+   LOCALCLASSPATH="$(/usr/bin/build-classpath ant ant-launcher jaxp_parser_impl xml-commons-apis)"
++
++  # If no optional jars have been specified then build the default list
++  if [ -z "$OPT_JAR_LIST" ] ; then
++    for file in /etc/ant.d/*; do
++      if [ -f "$file" ]; then
++        case "$file" in
++        *~) ;;
++        *#*) ;;
++        *.rpmsave) ;;
++        *.rpmnew) ;;
++        *)
++          for dep in `cat "$file"`; do
++            case "$OPT_JAR_LIST" in
++            *"$dep"*) ;;
++            *) OPT_JAR_LIST="$OPT_JAR_LIST${OPT_JAR_LIST:+ }$dep"
++            esac
++          done
++        esac
++      fi
++    done
++  fi
++
+   # If the user requested to try to add some other jars to the classpath
+   if [ -n "$OPT_JAR_LIST" ] ; then
+     _OPTCLASSPATH="$(/usr/bin/build-classpath $OPT_JAR_LIST 2> /dev/null)"
