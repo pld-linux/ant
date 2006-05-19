@@ -1,7 +1,7 @@
+%include /usr/lib/rpm/macros.java
 #
 # TODO:
 #	- prepare all BR and test the full build
-
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
 %bcond_without	antlr		# disable building antlr optional task(s)
@@ -33,6 +33,7 @@
 %undefine	with_jsch
 %endif
 #
+#
 Summary:	Ant build tool for Java
 Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
@@ -62,14 +63,17 @@ BuildRequires:	jdk
 %{?with_jsch:BuildRequires:	jsch}
 %{?with_junit:BuildRequires:	junit}
 %{?with_bsf:BuildRequires:	jython}
+BuildRequires:	jaxp_parser_impl
+BuildRequires:	jpackage-utils
 BuildRequires:	rpm-pythonprov
 Requires:	jdk
+Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
 BuildArch:	noarch
-ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664}
+ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_java_home	/usr/lib/java
+
 %define 	ant_home 	%{_datadir}/ant
 
 %description
@@ -402,7 +406,7 @@ find . -name "*.jar" -exec rm -f {} \;
 export JAVA_HOME=%{_libdir}/java
 
 export CLASSPATH=""
-required_jars=""
+required_jars="jaxp_parser_impl"
 %{?with_junit:required_jars="$required_jars junit"}
 %{?with_antlr:required_jars="$required_jars antlr"}
 %{?with_bsf:required_jars="$required_jars bsf jython beanshell"}
@@ -418,15 +422,9 @@ required_jars=""
 %{?with_jdepend:required_jars="$required_jars jdepend"}
 %{?with_jsch:required_jars="$required_jars jsch"}
 
-for jar_name in $required_jars ; do
-	if ! [ -f "%{_javadir}/${jar_name}.jar" ] ; then
-		echo "%{_javadir}/${jar_name}.jar missing. Broken BuildRequires?" >&2
-		exit 1
-	fi
-	CLASSPATH="$CLASSPATH:%{_javadir}/${jar_name}.jar"
-done
+CLASSPATH="`/usr/bin/build-classpath $required_jars`"
 
-export JAVA_HOME=%{_java_home}
+export JAVA_HOME=%{java_home}
 sh build.sh --noconfig main javadocs
 
 %install
