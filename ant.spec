@@ -57,8 +57,8 @@ URL:		http://ant.apache.org/
 %{?with_apache_log4j:BuildRequires:	jakarta-log4j}
 %{?with_apache_oro:BuildRequires:	jakarta-oro}
 %{?with_apache_regexp:BuildRequires:	jakarta-regexp}
-%{?with_javamail:BuildRequires:	java-gnu-activation}
-%{?with_javamail:BuildRequires:	java-gnu-mail}
+%{?with_javamail:BuildRequires:	jaf}
+%{?with_javamail:BuildRequires:	javamail}
 BuildRequires:	jdk
 %{?with_jsch:BuildRequires:	jsch}
 %{?with_junit:BuildRequires:	junit}
@@ -403,9 +403,10 @@ w Javie.
 find . -name "*.jar" -exec rm -f {} \;
 
 %build
-export JAVA_HOME=%{_libdir}/java
 
-export CLASSPATH=""
+unset JAVA_HOME
+export JAVA_HOME="%{java_home}" 
+
 required_jars="jaxp_parser_impl"
 %{?with_junit:required_jars="$required_jars junit"}
 %{?with_antlr:required_jars="$required_jars antlr"}
@@ -418,13 +419,12 @@ required_jars="jaxp_parser_impl"
 %{?with_apache_log4j:required_jars="$required_jars log4j"}
 %{?with_apache_oro:required_jars="$required_jars oro"}
 %{?with_apache_regexp:required_jars="$required_jars regexp"}
-%{?with_javamail:required_jars="$required_jars java-gnu-mail java-gnu-activation"}
+%{?with_javamail:required_jars="$required_jars javamail/mailapi jaf"}
 %{?with_jdepend:required_jars="$required_jars jdepend"}
 %{?with_jsch:required_jars="$required_jars jsch"}
 
-CLASSPATH="`/usr/bin/build-classpath $required_jars`"
+export CLASSPATH="`/usr/bin/build-classpath $required_jars`"
 
-export JAVA_HOME=%{java_home}
 sh build.sh --noconfig main javadocs
 
 %install
@@ -517,7 +517,7 @@ ln -sf %{name}-apache-regexp.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-jaka
 
 %if %{with javamail}
 install build/lib/%{name}-javamail.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-javamail-%{version}.jar
-echo "java-gnu-mail java-gnu-activation ant/ant-javamail" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/javamail
+echo "javamail/mailapi jaf ant/ant-javamail" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/javamail
 %endif
 
 %if %{with jdepend}
