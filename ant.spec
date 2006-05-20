@@ -404,7 +404,7 @@ find . -name "*.jar" -exec rm -f {} \;
 
 %build
 
-unset JAVA_HOME
+unset JAVA_HOME || :
 export JAVA_HOME="%{java_home}" 
 
 required_jars="jaxp_parser_impl"
