@@ -51,20 +51,20 @@ URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{?with_bsf:BuildRequires:	beanshell}
 %{?with_bsf:BuildRequires:	bsf}
+%{?with_javamail:BuildRequires:	jaf}
 %{?with_bcel:BuildRequires:	jakarta-bcel}
 %{?with_commons_logging:BuildRequires:	jakarta-commons-logging}
 %{?with_commons_net:BuildRequires:	jakarta-commons-net}
 %{?with_apache_log4j:BuildRequires:	jakarta-log4j}
 %{?with_apache_oro:BuildRequires:	jakarta-oro}
 %{?with_apache_regexp:BuildRequires:	jakarta-regexp}
-%{?with_javamail:BuildRequires:	jaf}
 %{?with_javamail:BuildRequires:	javamail}
+BuildRequires:	jaxp_parser_impl
 BuildRequires:	jdk
+BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch}
 %{?with_junit:BuildRequires:	junit}
 %{?with_bsf:BuildRequires:	jython}
-BuildRequires:	jaxp_parser_impl
-BuildRequires:	jpackage-utils
 BuildRequires:	rpm-pythonprov
 Requires:	jdk
 Requires:	jpackage-utils
@@ -72,7 +72,6 @@ Obsoletes:	jakarta-ant
 BuildArch:	noarch
 ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %define 	ant_home 	%{_datadir}/ant
 
@@ -99,7 +98,8 @@ Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	antlr
 Provides:	ant-antlr = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description antlr
 Optional antlr tasks for %{name}.
@@ -113,7 +113,8 @@ Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bsf
 Provides:	ant-apache-bsf = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description apache-bsf
 Optional apache bsf tasks for %{name}.
@@ -127,7 +128,8 @@ Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	xml-commons-resolver
 Provides:	ant-apache-resolver = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description apache-resolver
 Optional apache resolver tasks for %{name}.
@@ -141,7 +143,8 @@ Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	jakarta-commons-logging
 Provides:	ant-commons-logging = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description commons-logging
 Optional commons logging tasks for %{name}.
@@ -155,7 +158,8 @@ Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	jakarta-commons-net
 Provides:	ant-commons-net = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description commons-net
 Optional commons net tasks for %{name}.
@@ -169,7 +173,8 @@ Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	jai
 Provides:	ant-jai = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description jai
 Optional jai tasks for %{name}.
@@ -185,7 +190,8 @@ Requires:	bcel
 Provides:	ant-apache-bcel = %{epoch}:%{version}-%{release}
 Provides:	ant-jakarta-bcel = %{epoch}:%{version}-%{release}
 Obsoletes:	ant-jakarta-bcel
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description apache-bcel
 Optional apache bcel tasks for %{name}.
@@ -201,7 +207,8 @@ Requires:	log4j
 Provides:	ant-apache-log4j = %{epoch}:%{version}-%{release}
 Provides:	ant-jakarta-log4j = %{epoch}:%{version}-%{release}
 Obsoletes:	ant-jakarta-log4j
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description apache-log4j
 Optional apache log4j tasks for %{name}.
@@ -217,7 +224,8 @@ Requires:	oro
 Provides:	ant-apache-oro = %{epoch}:%{version}-%{release}
 Provides:	ant-jakarta-oro = %{epoch}:%{version}-%{release}
 Obsoletes:	ant-jakarta-oro
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description apache-oro
 Optional apache oro tasks for %{name}.
@@ -233,7 +241,8 @@ Requires:	regexp
 Provides:	ant-apache-regexp = %{epoch}:%{version}-%{release}
 Provides:	ant-jakarta-regexp = %{epoch}:%{version}-%{release}
 Obsoletes:	ant-jakarta-regexp
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description apache-regexp
 Optional apache regexp tasks for %{name}.
@@ -248,7 +257,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	jaf >= 0:1.0.1-5jpp
 Requires:	javamail >= 0:1.2-5jpp
 Provides:	ant-javamail = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description javamail
 Optional javamail tasks for %{name}.
@@ -262,7 +272,8 @@ Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	jdepend
 Provides:	ant-jdepend = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description jdepend
 Optional jdepend tasks for %{name}.
@@ -275,7 +286,8 @@ Summary:	Optional jmf tasks for %{name}
 Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	ant-jmf = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description jmf
 Optional jmf tasks for %{name}.
@@ -289,7 +301,8 @@ Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	jsch
 Provides:	ant-jsch = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description jsch
 Optional jsch tasks for %{name}.
@@ -303,7 +316,8 @@ Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	junit
 Provides:	ant-junit = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description junit
 Optional junit tasks for %{name}.
@@ -316,7 +330,8 @@ Summary:	Optional tasks for %{name}
 Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	ant-nodeps = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description nodeps
 Optional tasks for %{name}.
@@ -329,7 +344,8 @@ Summary:	Optional swing tasks for %{name}
 Group:		Development/Languages/Java
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	ant-swing = %{epoch}:%{version}-%{release}
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description swing
 Optional swing tasks for %{name}.
@@ -345,7 +361,8 @@ Requires:	jaxp_transform_impl
 Provides:	ant-trax = %{epoch}:%{version}-%{release}
 # The ant-xalan jar has been merged into the ant-trax one
 Obsoletes:	ant-xalan2
-Conflicts:	ant-optional-clean, ant-optional-full
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
 
 %description trax
 Optional trax tasks for %{name}.
@@ -403,9 +420,7 @@ w Javie.
 find . -name "*.jar" -exec rm -f {} \;
 
 %build
-
-unset JAVA_HOME || :
-export JAVA_HOME="%{java_home}" 
+export JAVA_HOME="%{java_home}"
 
 required_jars="jaxp_parser_impl"
 %{?with_junit:required_jars="$required_jars junit"}
