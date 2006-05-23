@@ -1,7 +1,5 @@
-%include /usr/lib/rpm/macros.java
-#
-# TODO:
-#	- prepare all BR and test the full build
+# TODO
+# - prepare all BR and test the full build
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
 %bcond_without	antlr		# disable building antlr optional task(s)
@@ -64,8 +62,8 @@ BuildRequires:	jdk
 %{?with_jsch:BuildRequires:	jsch}
 %{?with_junit:BuildRequires:	junit}
 %{?with_bsf:BuildRequires:	jython}
-BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jdk
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
