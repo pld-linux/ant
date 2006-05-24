@@ -59,6 +59,7 @@ URL:		http://ant.apache.org/
 %{?with_javamail:BuildRequires:	javamail}
 BuildRequires:	jaxp_parser_impl
 BuildRequires:	jdk
+BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch}
 %{?with_junit:BuildRequires:	junit}
 %{?with_bsf:BuildRequires:	jython}
