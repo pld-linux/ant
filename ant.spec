@@ -209,7 +209,7 @@ Summary(fr):	Taches apache bcel optionelles pour %{name}
 Summary(pl):	Opcjonalne zadania apache bcel dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	bcel
+Requires:	jakarta-bcel
 Provides:	ant-jakarta-bcel = %{version}-%{release}
 Obsoletes:	ant-jakarta-bcel
 Conflicts:	ant-optional-clean
@@ -230,7 +230,7 @@ Summary(fr):	Taches apache log4j optionelles pour %{name}
 Summary(pl):	Opcjonalne zadania apache log4j dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	log4j
+Requires:	logging-log4j
 Provides:	ant-jakarta-log4j = %{version}-%{release}
 Obsoletes:	ant-jakarta-log4j
 Conflicts:	ant-optional-clean
@@ -251,7 +251,7 @@ Summary(fr):	Taches apache oro optionelles pour %{name}
 Summary(pl):	Opcjonalne zadania apache oro dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	oro
+Requires:	jakarta-oro
 Provides:	ant-jakarta-oro = %{version}-%{release}
 Obsoletes:	ant-jakarta-oro
 Conflicts:	ant-optional-clean
@@ -272,7 +272,7 @@ Summary(fr):	Taches apache regexp optionelles pour %{name}
 Summary(pl):	Opcjonalne zadania apache regexp dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	regexp
+Requires:	jakarta-regexp
 Obsoletes:	ant-jakarta-regexp
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
@@ -292,8 +292,8 @@ Summary(fr):	Taches javamail optionelles pour %{name}
 Summary(pl):	Opcjonalne zadania javamail dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jaf >= 0:1.0.1-5jpp
-Requires:	javamail >= 0:1.2-5jpp
+Requires:	jaf >= 1.0.1
+Requires:	javamail >= 1.2
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
