@@ -1,5 +1,6 @@
 # TODO
 # - prepare all BR and test the full build
+#
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
 %bcond_without	antlr		# disable building antlr optional task(s)
@@ -30,7 +31,6 @@
 %undefine	with_javamail
 %undefine	with_jsch
 %endif
-#
 #
 Summary:	Ant build tool for Java
 Summary(fr):	Outil de compilation pour java
@@ -93,10 +93,11 @@ u¿ywany przez projekty apache jakarta i xml.
 
 %package antlr
 Summary:	Optional antlr tasks for %{name}
+Summary(fr):	Taches antlr optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania antlr dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	antlr
-Provides:	ant-antlr = %{epoch}:%{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -106,12 +107,16 @@ Optional antlr tasks for %{name}.
 %description antlr -l fr
 Taches antlr optionelles pour %{name}.
 
+%description antlr -l pl
+Opcjonalne zadania antlr dla anta.
+
 %package apache-bsf
 Summary:	Optional apache bsf tasks for %{name}
+Summary(fr);	Taches apache bsf optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache bsf dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	bsf
-Provides:	ant-apache-bsf = %{epoch}:%{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -121,12 +126,17 @@ Optional apache bsf tasks for %{name}.
 %description apache-bsf -l fr
 Taches apache bsf optionelles pour %{name}.
 
+%description apache-bsf -l pl
+Opcjonalne zadania apache bsf dla anta.
+
 %package apache-resolver
 Summary:	Optional apache resolver tasks for %{name}
+Summary(fr):	Taches apache resolver optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache resolver dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	xml-commons-resolver
-Provides:	ant-apache-resolver = %{epoch}:%{version}-%{release}
+Provides:	ant-apache-resolver = %{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -138,10 +148,11 @@ Taches apache resolver optionelles pour %{name}.
 
 %package commons-logging
 Summary:	Optional commons logging tasks for %{name}
+Summary(fr):	Taches commons logging optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania commons logging dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	jakarta-commons-logging
-Provides:	ant-commons-logging = %{epoch}:%{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -151,12 +162,16 @@ Optional commons logging tasks for %{name}.
 %description commons-logging -l fr
 Taches commons logging optionelles pour %{name}.
 
+%description commons-logging -l pl
+Opcjonalne zadania commons logging dla anta.
+
 %package commons-net
 Summary:	Optional commons net tasks for %{name}
+Summary(fr):	Taches commons net optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania commons net dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	jakarta-commons-net
-Provides:	ant-commons-net = %{epoch}:%{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -166,12 +181,16 @@ Optional commons net tasks for %{name}.
 %description commons-net -l fr
 Taches commons net optionelles pour %{name}.
 
+%description commons-net -l pl
+Opcjonalne zadania commons net dla anta.
+
 %package jai
 Summary:	Optional jai tasks for %{name}
+Summary(fr):	Taches jai optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania jai dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	jai
-Provides:	ant-jai = %{epoch}:%{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -181,13 +200,17 @@ Optional jai tasks for %{name}.
 %description jai -l fr
 Taches jai optionelles pour %{name}.
 
+%description jai -l pl
+Opcjonalne zadania jai dla anta.
+
 %package apache-bcel
 Summary:	Optional apache bcel tasks for %{name}
+Summary(fr):	Taches apache bcel optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache bcel dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	bcel
-Provides:	ant-apache-bcel = %{epoch}:%{version}-%{release}
-Provides:	ant-jakarta-bcel = %{epoch}:%{version}-%{release}
+Provides:	ant-jakarta-bcel = %{version}-%{release}
 Obsoletes:	ant-jakarta-bcel
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
@@ -198,13 +221,17 @@ Optional apache bcel tasks for %{name}.
 %description apache-bcel -l fr
 Taches apache bcel optionelles pour %{name}.
 
+%description apache-bcel -l pl
+Opcjonalne zadania apache bcel dla anta.
+
 %package apache-log4j
 Summary:	Optional apache log4j tasks for %{name}
+Summary(fr):	Taches apache log4j optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache log4j dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	log4j
-Provides:	ant-apache-log4j = %{epoch}:%{version}-%{release}
-Provides:	ant-jakarta-log4j = %{epoch}:%{version}-%{release}
+Provides:	ant-jakarta-log4j = %{version}-%{release}
 Obsoletes:	ant-jakarta-log4j
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
@@ -215,13 +242,17 @@ Optional apache log4j tasks for %{name}.
 %description apache-log4j -l fr
 Taches apache log4j optionelles pour %{name}.
 
+%description apache-log4j -l pl
+Opcjonalne zadania apache log4j dla anta.
+
 %package apache-oro
 Summary:	Optional apache oro tasks for %{name}
+Summary(fr):	Taches apache oro optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache oro dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	oro
-Provides:	ant-apache-oro = %{epoch}:%{version}-%{release}
-Provides:	ant-jakarta-oro = %{epoch}:%{version}-%{release}
+Provides:	ant-jakarta-oro = %{version}-%{release}
 Obsoletes:	ant-jakarta-oro
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
@@ -232,13 +263,16 @@ Optional apache oro tasks for %{name}.
 %description apache-oro -l fr
 Taches apache oro optionelles pour %{name}.
 
+%description apache-oro -l pl
+Opcjonalne zadania apache oro dla anta.
+
 %package apache-regexp
 Summary:	Optional apache regexp tasks for %{name}
+Summary(fr):	Taches apache regexp optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache regexp dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	regexp
-Provides:	ant-apache-regexp = %{epoch}:%{version}-%{release}
-Provides:	ant-jakarta-regexp = %{epoch}:%{version}-%{release}
 Obsoletes:	ant-jakarta-regexp
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
@@ -249,13 +283,17 @@ Optional apache regexp tasks for %{name}.
 %description apache-regexp -l fr
 Taches apache regexp optionelles pour %{name}.
 
+%description apache-regexp -l pl
+Opcjonalne zadania apache regexp dla anta.
+
 %package javamail
 Summary:	Optional javamail tasks for %{name}
+Summary(fr):	Taches javamail optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania javamail dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	jaf >= 0:1.0.1-5jpp
 Requires:	javamail >= 0:1.2-5jpp
-Provides:	ant-javamail = %{epoch}:%{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -265,12 +303,16 @@ Optional javamail tasks for %{name}.
 %description javamail -l fr
 Taches javamail optionelles pour %{name}.
 
+%description javamail -l pl
+Opcjonalne zadania javamail dla anta.
+
 %package jdepend
 Summary:	Optional jdepend tasks for %{name}
+Summary(fr):	Taches jdepend optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania jdepend dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	jdepend
-Provides:	ant-jdepend = %{epoch}:%{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -280,11 +322,15 @@ Optional jdepend tasks for %{name}.
 %description jdepend -l fr
 Taches jdepend optionelles pour %{name}.
 
+%description jdepend -l pl
+Opcjonalne zadania jdepend dla anta.
+
 %package jmf
 Summary:	Optional jmf tasks for %{name}
+Summary(fr):	Taches jmf optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania jmf dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Provides:	ant-jmf = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -294,12 +340,16 @@ Optional jmf tasks for %{name}.
 %description jmf -l fr
 Taches jmf optionelles pour %{name}.
 
+%description jmf -l pl
+Opcjonalne zadania jmf dla anta.
+
 %package jsch
 Summary:	Optional jsch tasks for %{name}
+Summary(fr):	Taches jsch optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania jsch dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	jsch
-Provides:	ant-jsch = %{epoch}:%{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -309,12 +359,16 @@ Optional jsch tasks for %{name}.
 %description jsch -l fr
 Taches jsch optionelles pour %{name}.
 
+%description jsch -l pl
+Opcjonalne zadania jsch dla anta.
+
 %package junit
 Summary:	Optional junit tasks for %{name}
+Summary(fr):	Taches junit optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania junit dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	junit
-Provides:	ant-junit = %{epoch}:%{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -324,11 +378,15 @@ Optional junit tasks for %{name}.
 %description junit -l fr
 Taches junit optionelles pour %{name}.
 
+%description junit -l pl
+Opcjonalne zadania junit dla anta.
+
 %package nodeps
 Summary:	Optional tasks for %{name}
+Summary(fr):	Taches optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Provides:	ant-nodeps = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -338,11 +396,15 @@ Optional tasks for %{name}.
 %description nodeps -l fr
 Taches optionelles pour %{name}.
 
+%description nodeps -l pl
+Opcjonalne zadania dla anta.
+
 %package swing
 Summary:	Optional swing tasks for %{name}
+Summary(fr):	Taches swing optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania swing dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Provides:	ant-swing = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -352,12 +414,16 @@ Optional swing tasks for %{name}.
 %description swing -l fr
 Taches swing optionelles pour %{name}.
 
+%description swing -l pl
+Opcjonalne zadania swing dla anta.
+
 %package trax
 Summary:	Optional trax tasks for %{name}
+Summary(fr):	Taches trax optionelles pour %{name}
+Summary(pl):	Dodatkowe zadania trax dla anta
 Group:		Development/Languages/Java
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	jaxp_transform_impl
-Provides:	ant-trax = %{epoch}:%{version}-%{release}
 # The ant-xalan jar has been merged into the ant-trax one
 Obsoletes:	ant-xalan2
 Conflicts:	ant-optional-clean
@@ -369,11 +435,16 @@ Optional trax tasks for %{name}.
 %description trax -l fr
 Taches trax optionelles pour %{name}.
 
+%description trax -l pl
+Dodatkowe zadania trax dla anta.
+
 %package scripts
 Summary:	Additional scripts for %{name}
+Summary(fr):	Scripts additionels pour %{name}
+Summary(pl):	Dodatkowe skrypty dla anta
 Group:		Development/Languages/Java
 AutoReqProv:	no
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	/usr/bin/perl
 Requires:	/usr/bin/python
 
@@ -383,19 +454,27 @@ Additional Perl and Python scripts for %{name}.
 %description scripts -l fr
 Scripts additionels pour %{name}.
 
+%description scripts -l pl
+Dodatkowe skrypty dla anta.
+
 %package doc
 Summary:	Manual for %{name}
+Summary(fr):	Documentation pour %{name}
+Summary(it):	Documentazione di %{name}
+Summary(pl):	Podrêcznik dla anta
 Group:		Development/Languages/Java
 
 %description doc
 Documentation for %{name}.
 
-%description doc -l it
-Documentazione di %{name}.
-
 %description doc -l fr
 Documentation pour %{name}.
 
+%description doc -l it
+Documentazione di %{name}.
+
+%description doc -l pl
+Dokumentacja do anta.
 
 %package javadoc
 Summary:	Online manual for ant
@@ -408,8 +487,9 @@ Documentation for ant, platform-independent build tool for Java. Used
 by Apache Group for jakarta and xml projects.
 
 %description javadoc -l pl
-Dokumentacja do ant - niezale¿nego od platformy narzêdzia do budowania
-w Javie.
+Dokumentacja do anta - niezale¿nego od platformy narzêdzia do
+budowania w Javie. Jest ono u¿ywane przez Apache Group w projektach
+jakarta i xml.
 
 %prep
 %setup -q -n apache-%{name}-%{version}
