@@ -660,6 +660,7 @@ fi
 %{_javadir}/%{name}-launcher.jar
 %{_javadir}/%{name}-%{version}.jar
 %{_javadir}/%{name}-launcher-%{version}.jar
+%dir %{_javadir}/%{name}
 %dir %{ant_home}
 %dir %{ant_home}%{_sysconfdir}
 %{ant_home}%{_sysconfdir}/ant-update.xsl
