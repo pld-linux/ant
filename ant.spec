@@ -112,7 +112,7 @@ Opcjonalne zadania antlr dla anta.
 
 %package apache-bsf
 Summary:	Optional apache bsf tasks for %{name}
-Summary(fr);	Taches apache bsf optionelles pour %{name}
+Summary(fr):	Taches apache bsf optionelles pour %{name}
 Summary(pl):	Opcjonalne zadania apache bsf dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
