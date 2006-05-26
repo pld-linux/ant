@@ -6,10 +6,10 @@
 %bcond_without	antlr		# disable building antlr optional task(s)
 %bcond_without	apache_bcel	# disable building apache-bcel optional task(s)
 %bcond_without	apache_bsf	# disable building apache-bsf optional task(s)
-%bcond_without	apache_log4j	# disable building apache-log4j optional task(s)
+%bcond_without	apache_log4j	# disable building log4j optional task(s)
 %bcond_without	apache_oro	# disable building apache-oro optional task(s)
 %bcond_without	apache_regexp	# disable building apache-regexp optional task(s)
-%bcond_without	apache_resolver	# disable building apache-resolver optional task(s)
+%bcond_with	apache_resolver	# enable building apache-resolver optional task(s)
 %bcond_without	commons-logging	# disable building commons-logging optional task(s)
 %bcond_without	commons-net	# disable building commons-net optional task(s)
 %bcond_with	jai		# enable building jai optional task(s)
@@ -38,7 +38,7 @@ Summary(it):	Tool per la compilazione di programmi java
 Summary(pl):	Ant - narzêdzie do budowania w Javie
 Name:		ant
 Version:	1.6.5
-Release:	1.2
+Release:	2
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
@@ -47,13 +47,13 @@ Source1:	%{name}.conf
 Patch0:		%{name}-ant_d.patch
 URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
-%{?with_bsf:BuildRequires:	beanshell}
-%{?with_bsf:BuildRequires:	bsf}
+%{?with_apache_bsf:BuildRequires:	beanshell}
+%{?with_apache_bsf:BuildRequires:	bsf}
 %{?with_javamail:BuildRequires:	jaf}
 %{?with_bcel:BuildRequires:	jakarta-bcel}
 %{?with_commons_logging:BuildRequires:	jakarta-commons-logging}
 %{?with_commons_net:BuildRequires:	jakarta-commons-net}
-%{?with_apache_log4j:BuildRequires:	jakarta-log4j}
+%{?with_apache_log4j:BuildRequires:	logging-log4j}
 %{?with_apache_oro:BuildRequires:	jakarta-oro}
 %{?with_apache_regexp:BuildRequires:	jakarta-regexp}
 %{?with_javamail:BuildRequires:	javamail}
@@ -62,7 +62,7 @@ BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch}
 %{?with_junit:BuildRequires:	junit}
-%{?with_bsf:BuildRequires:	jython}
+%{?with_apache_bsf:BuildRequires:	jython}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jdk
@@ -504,16 +504,16 @@ export JAVA_HOME="%{java_home}"
 required_jars="jaxp_parser_impl"
 %{?with_junit:required_jars="$required_jars junit"}
 %{?with_antlr:required_jars="$required_jars antlr"}
-%{?with_bsf:required_jars="$required_jars bsf jython beanshell"}
+%{?with_apache_bsf:required_jars="$required_jars bsf jython beanshell"}
 %{?with_apache_resolver:required_jars="$required_jars xml-commons-resolver"}
 %{?with_commons_logging:required_jars="$required_jars jakarta-commons-logging"}
 %{?with_commons_net:required_jars="$required_jars jakarta-commons-net"}
 %{?with_jai:required_jars="$required_jars jait"}
 %{?with_apache_bcel:required_jars="$required_jars bcel"}
-%{?with_apache_log4j:required_jars="$required_jars log4j"}
+%{?with_log4j:required_jars="$required_jars log4j"}
 %{?with_apache_oro:required_jars="$required_jars oro"}
 %{?with_apache_regexp:required_jars="$required_jars regexp"}
-%{?with_javamail:required_jars="$required_jars javamail/mailapi jaf"}
+%{?with_javamail:required_jars="$required_jars mailapi jaf"}
 %{?with_jdepend:required_jars="$required_jars jdepend"}
 %{?with_jsch:required_jars="$required_jars jsch"}
 
@@ -558,7 +558,7 @@ install build/lib/%{name}-antlr.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-a
 echo "antlr ant/ant-antlr" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/antlr
 %endif
 
-%if %{with bsf}
+%if %{with apache_bsf}
 install build/lib/%{name}-apache-bsf.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-apache-bsf-%{version}.jar
 echo "bsf ant/ant-apache-bsf" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/apache-bsf
 %endif
@@ -592,7 +592,7 @@ echo "bcel ant/ant-apache-bcel" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/apache
 %if %{with apache_log4j}
 install build/lib/%{name}-apache-log4j.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-apache-log4j-%{version}.jar
 ln -sf %{name}-apache-log4j.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-jakarta-log4j.jar
-echo "log4j ant/ant-apache-log4j" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/apache-log4j
+echo "log4j ant/ant-log4j" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/apache-log4j
 %endif
 
 %if %{with apache_oro}
