@@ -50,7 +50,7 @@ URL:		http://ant.apache.org/
 %{?with_apache_bsf:BuildRequires:	beanshell}
 %{?with_apache_bsf:BuildRequires:	bsf}
 %{?with_javamail:BuildRequires:	jaf}
-%{?with_bcel:BuildRequires:	jakarta-bcel}
+%{?with_apache_bcel:BuildRequires:	jakarta-bcel}
 %{?with_commons_logging:BuildRequires:	jakarta-commons-logging}
 %{?with_commons_net:BuildRequires:	jakarta-commons-net}
 %{?with_apache_log4j:BuildRequires:	logging-log4j}
