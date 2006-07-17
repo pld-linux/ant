@@ -504,7 +504,7 @@ export JAVA_HOME="%{java_home}"
 required_jars="jaxp_parser_impl"
 %{?with_junit:required_jars="$required_jars junit"}
 %{?with_antlr:required_jars="$required_jars antlr"}
-%{?with_apache_bsf:required_jars="$required_jars bsf jython beanshell"}
+%{?with_apache_bsf:required_jars="$required_jars bsf jython bsh"}
 %{?with_apache_resolver:required_jars="$required_jars xml-commons-resolver"}
 %{?with_commons_logging:required_jars="$required_jars jakarta-commons-logging"}
 %{?with_commons_net:required_jars="$required_jars jakarta-commons-net"}
@@ -513,7 +513,7 @@ required_jars="jaxp_parser_impl"
 %{?with_log4j:required_jars="$required_jars log4j"}
 %{?with_apache_oro:required_jars="$required_jars oro"}
 %{?with_apache_regexp:required_jars="$required_jars regexp"}
-%{?with_javamail:required_jars="$required_jars mailapi jaf"}
+%{?with_javamail:required_jars="$required_jars mailapi activation"}
 %{?with_jdepend:required_jars="$required_jars jdepend"}
 %{?with_jsch:required_jars="$required_jars jsch"}
 
