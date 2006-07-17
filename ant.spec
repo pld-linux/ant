@@ -32,13 +32,14 @@
 %undefine	with_jsch
 %endif
 #
+%define		_rel	2
 Summary:	Ant build tool for Java
 Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
 Summary(pl):	Ant - narzêdzie do budowania w Javie
 Name:		ant
 Version:	1.6.5
-Release:	2
+Release:	%{?with_bootstrap:bootstrap.}%{_rel}
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
