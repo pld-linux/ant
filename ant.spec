@@ -32,7 +32,7 @@
 %undefine	with_jsch
 %endif
 #
-%define		_rel	2
+%define		_rel	3
 Summary:	Ant build tool for Java
 Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
