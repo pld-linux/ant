@@ -293,7 +293,7 @@ Summary(fr):	Taches javamail optionelles pour %{name}
 Summary(pl):	Opcjonalne zadania javamail dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jaf >= 1.0.1
+Requires:	jaf
 Requires:	javamail >= 1.2
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
