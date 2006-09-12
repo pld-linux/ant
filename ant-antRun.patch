@@ -1,0 +1,33 @@
+diff -ur apache-ant-1.6.5/src/main/org/apache/tools/ant/taskdefs/Exec.java apache-ant-1.6.5-antRun/src/main/org/apache/tools/ant/taskdefs/Exec.java
+--- apache-ant-1.6.5/src/main/org/apache/tools/ant/taskdefs/Exec.java	2005-06-02 15:19:56.000000000 +0200
++++ apache-ant-1.6.5-antRun/src/main/org/apache/tools/ant/taskdefs/Exec.java	2006-09-12 14:57:55.000000000 +0200
+@@ -99,7 +99,7 @@
+               throw new BuildException("Property 'ant.home' not found",
+                                        getLocation());
+             }
+-            String antRun = getProject().resolveFile(ant + "/bin/antRun").toString();
++            String antRun = getProject().resolveFile("@BINDIR@/antRun").toString();
+ 
+             command = antRun + " " + dir + " " + command;
+         }
+diff -ur apache-ant-1.6.5/src/main/org/apache/tools/ant/taskdefs/Execute.java apache-ant-1.6.5-antRun/src/main/org/apache/tools/ant/taskdefs/Execute.java
+--- apache-ant-1.6.5/src/main/org/apache/tools/ant/taskdefs/Execute.java	2005-06-02 15:19:56.000000000 +0200
++++ apache-ant-1.6.5-antRun/src/main/org/apache/tools/ant/taskdefs/Execute.java	2006-09-12 15:01:09.000000000 +0200
+@@ -127,7 +127,7 @@
+             shellLauncher = vmLauncher;
+         } else {
+             // Generic
+-            shellLauncher = new ScriptCommandLauncher("bin/antRun",
++            shellLauncher = new ScriptCommandLauncher("antRun",
+                 new CommandLauncher());
+         }
+     }
+@@ -1038,7 +1038,7 @@
+                 throw new IOException("Cannot locate antRun script: "
+                     + "Property 'ant.home' not found");
+             }
+-            String antRun = project.resolveFile(antHome + File.separator + myScript).toString();
++            String antRun = project.resolveFile("@BINDIR@" + File.separator + myScript).toString();
+ 
+             // Build the command
+             File commandDir = workingDir;
