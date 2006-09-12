@@ -32,7 +32,7 @@
 %undefine	with_jsch
 %endif
 #
-%define		_rel	3.1
+%define		_rel	3.2
 Summary:	Ant build tool for Java
 Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
@@ -501,7 +501,7 @@ jakarta i xml.
 # clean jar files
 find . -name "*.jar" -exec rm -f {} \;
 
-sed -i -e '|@BINDIR|%{_bindir}|g' \
+sed -i -e 's|@BINDIR@|%{_bindir}|g' \
 	src/main/org/apache/tools/ant/taskdefs/Exec.java \
 	src/main/org/apache/tools/ant/taskdefs/Execute.java
 
