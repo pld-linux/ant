@@ -32,7 +32,7 @@
 %undefine	with_jsch
 %endif
 #
-%define		_rel	4
+%define		_rel	5
 Summary:	Ant build tool for Java
 Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
@@ -55,7 +55,6 @@ URL:		http://ant.apache.org/
 %{?with_apache_bcel:BuildRequires:	jakarta-bcel}
 %{?with_commons_logging:BuildRequires:	jakarta-commons-logging}
 %{?with_commons_net:BuildRequires:	jakarta-commons-net}
-%{?with_apache_log4j:BuildRequires:	logging-log4j}
 %{?with_apache_oro:BuildRequires:	jakarta-oro}
 %{?with_apache_regexp:BuildRequires:	jakarta-regexp}
 %{?with_javamail:BuildRequires:	javamail}
@@ -65,6 +64,7 @@ BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch}
 %{?with_junit:BuildRequires:	junit}
 %{?with_apache_bsf:BuildRequires:	jython}
+%{?with_apache_log4j:BuildRequires:	logging-log4j}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jdk
@@ -482,6 +482,7 @@ Dokumentacja do anta.
 Summary:	Online manual for ant
 Summary(pl):	Dokumentacja online do ant
 Group:		Documentation
+Requires:	jpackage-utils
 Obsoletes:	jakarta-ant-doc
 
 %description javadoc
