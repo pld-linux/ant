@@ -32,21 +32,20 @@
 %undefine	with_jsch
 %endif
 #
-%define		_rel	5
+%define		_rel	0.1
 Summary:	Ant build tool for Java
 Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
 Summary(pl):	Ant - narzêdzie do budowania w Javie
 Name:		ant
-Version:	1.6.5
+Version:	1.7.0
 Release:	%{?with_bootstrap:bootstrap.}%{_rel}
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
-# Source0-md5:	80a7ad191c40b7d8c82533524b282b6b
+# Source0-md5:	22b378e27ab300e4d73bf09d91c7e2a6
 Source1:	%{name}.conf
-Patch0:		%{name}-ant_d.patch
-Patch1:		%{name}-antRun.patch
+Patch0:		%{name}-antRun.patch
 URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{?with_apache_bsf:BuildRequires:	beanshell}
@@ -497,7 +496,6 @@ jakarta i xml.
 %prep
 %setup -q -n apache-%{name}-%{version}
 %patch0 -p1
-%patch1 -p1
 
 # clean jar files
 find . -name "*.jar" -exec rm -f {} \;
