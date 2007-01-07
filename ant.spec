@@ -63,7 +63,7 @@ BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch >= 0.1.21}
 %{?with_junit:BuildRequires:	junit}
 %{?with_apache_bsf:BuildRequires:	jython}
-%{?with_apache_log4j:BuildRequires:	logging-log4j}
+%{?with_apache_log4j:BuildRequires:	logging-log4j >= 1.2}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jdk
@@ -231,7 +231,7 @@ Summary(fr):	Taches apache log4j optionelles pour %{name}
 Summary(pl):	Opcjonalne zadania apache log4j dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	logging-log4j
+Requires:	logging-log4j >= 1.2
 Provides:	ant-jakarta-log4j = %{version}-%{release}
 Obsoletes:	ant-jakarta-log4j
 Conflicts:	ant-optional-clean
@@ -350,7 +350,7 @@ Summary(fr):	Taches jsch optionelles pour %{name}
 Summary(pl):	Opcjonalne zadania jsch dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jsch
+Requires:	jsch >= 0.1.21
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -516,7 +516,7 @@ required_jars="jaxp_parser_impl"
 %{?with_commons_net:required_jars="$required_jars jakarta-commons-net"}
 %{?with_jai:required_jars="$required_jars jait"}
 %{?with_apache_bcel:required_jars="$required_jars bcel"}
-%{?with_log4j:required_jars="$required_jars log4j"}
+%{?with_apache_log4j:required_jars="$required_jars log4j"}
 %{?with_apache_oro:required_jars="$required_jars oro"}
 %{?with_apache_regexp:required_jars="$required_jars regexp"}
 %{?with_javamail:required_jars="$required_jars mailapi activation"}
