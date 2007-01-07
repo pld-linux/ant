@@ -60,7 +60,7 @@ URL:		http://ant.apache.org/
 BuildRequires:	jaxp_parser_impl
 BuildRequires:	jdk
 BuildRequires:	jpackage-utils
-%{?with_jsch:BuildRequires:	jsch}
+%{?with_jsch:BuildRequires:	jsch >= 0.1.21}
 %{?with_junit:BuildRequires:	junit}
 %{?with_apache_bsf:BuildRequires:	jython}
 %{?with_apache_log4j:BuildRequires:	logging-log4j}
