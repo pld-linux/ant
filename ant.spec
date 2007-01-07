@@ -668,12 +668,13 @@ fi
 %{_javadir}/%{name}-launcher-%{version}.jar
 %dir %{_javadir}/%{name}
 %dir %{ant_home}
-%dir %{ant_home}%{_sysconfdir}
-%{ant_home}%{_sysconfdir}/ant-update.xsl
-%{ant_home}%{_sysconfdir}/changelog.xsl
-%{ant_home}%{_sysconfdir}/log.xsl
-%{ant_home}%{_sysconfdir}/tagdiff.xsl
-%{ant_home}%{_sysconfdir}/junit-frames-xalan1.xsl
+%dir %{ant_home}/etc
+%{ant_home}/etc/ant-update.xsl
+%{ant_home}/etc/changelog.xsl
+%{ant_home}/etc/common2master.xsl
+%{ant_home}/etc/log.xsl
+%{ant_home}/etc/tagdiff.xsl
+%{ant_home}/etc/junit-frames-xalan1.xsl
 %dir %{ant_home}/lib
 %dir %{_sysconfdir}/%{name}.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
@@ -695,8 +696,8 @@ fi
 %{_javadir}/%{name}/%{name}-trax.jar
 %{_javadir}/%{name}/%{name}-trax-%{version}.jar
 %{_sysconfdir}/%{name}.d/trax
-%{ant_home}%{_sysconfdir}/mmetrics-frames.xsl
-%{ant_home}%{_sysconfdir}/coverage-frames.xsl
+%{ant_home}/etc/mmetrics-frames.xsl
+%{ant_home}/etc/coverage-frames.xsl
 
 %files jmf
 %defattr(644,root,root,755)
@@ -723,8 +724,8 @@ fi
 %{_javadir}/%{name}/%{name}-junit.jar
 %{_javadir}/%{name}/%{name}-junit-%{version}.jar
 %{_sysconfdir}/%{name}.d/junit
-%{ant_home}%{_sysconfdir}/junit-frames.xsl
-%{ant_home}%{_sysconfdir}/junit-noframes.xsl
+%{ant_home}/etc/junit-frames.xsl
+%{ant_home}/etc/junit-noframes.xsl
 %endif
 
 %if %{with antlr}
@@ -800,7 +801,7 @@ fi
 %{_javadir}/%{name}/%{name}-apache-oro-%{version}.jar
 %{_javadir}/%{name}/%{name}-jakarta-oro.jar
 %{_sysconfdir}/%{name}.d/apache-oro
-%{ant_home}%{_sysconfdir}/maudit-frames.xsl
+%{ant_home}/etc/maudit-frames.xsl
 %endif
 
 %if %{with apache_regexp}
@@ -826,8 +827,8 @@ fi
 %{_javadir}/%{name}/%{name}-jdepend.jar
 %{_javadir}/%{name}/%{name}-jdepend-%{version}.jar
 %{_sysconfdir}/%{name}.d/jdepend
-%{ant_home}%{_sysconfdir}/jdepend.xsl
-%{ant_home}%{_sysconfdir}/jdepend-frames.xsl
+%{ant_home}/etc/jdepend.xsl
+%{ant_home}/etc/jdepend-frames.xsl
 %endif
 
 %if %{with jsch}
