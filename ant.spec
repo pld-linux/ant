@@ -527,6 +527,9 @@ required_jars="jaxp_parser_impl"
 
 export CLASSPATH="`/usr/bin/build-classpath $required_jars`"
 
+# do bootstrap ourselves, instead in build.sh
+ANT_HOME=./bootstrap sh -x ./bootstrap.sh
+
 sh build.sh --noconfig main javadocs
 
 %install
