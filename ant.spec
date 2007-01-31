@@ -1,5 +1,6 @@
 # TODO
 # - prepare all BR and test the full build
+#   (TODO: stylebook, starteam, jai, jdepend, weblogic)
 #
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
@@ -9,7 +10,7 @@
 %bcond_without	apache_log4j	# disable building log4j optional task(s)
 %bcond_without	apache_oro	# disable building apache-oro optional task(s)
 %bcond_without	apache_regexp	# disable building apache-regexp optional task(s)
-%bcond_with	apache_resolver	# enable building apache-resolver optional task(s)
+%bcond_without	apache_resolver	# disable building apache-resolver optional task(s)
 %bcond_without	commons_logging	# disable building commons-logging optional task(s)
 %bcond_without	commons_net	# disable building commons-net optional task(s)
 %bcond_with	jai		# enable building jai optional task(s)
@@ -17,6 +18,7 @@
 %bcond_with	jdepend		# enable building jdepend optional task(s)
 %bcond_without	jsch		# disable building jsch optional task(s)
 %bcond_without	junit		# disable building junit optional task(s)
+%bcond_without	netrexx		# disable building netrexx optional taks(s)
 #
 %if %{with bootstrap}
 %undefine	with_antlr
@@ -30,6 +32,7 @@
 %undefine	with_commons_net
 %undefine	with_javamail
 %undefine	with_jsch
+%undefine	with_netrexx
 %endif
 #
 %define		_rel	0.1
@@ -64,6 +67,7 @@ BuildRequires:	jpackage-utils
 %{?with_junit:BuildRequires:	junit}
 %{?with_apache_bsf:BuildRequires:	jython}
 %{?with_apache_log4j:BuildRequires:	logging-log4j >= 1.2}
+%{?with_netrexx:BuildRequires:	netrexx}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jdk
@@ -111,6 +115,27 @@ Taches antlr optionelles pour %{name}.
 %description antlr -l pl
 Opcjonalne zadania antlr dla anta.
 
+%package apache-bcel
+Summary:	Optional apache bcel tasks for %{name}
+Summary(fr):	Taches apache bcel optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache bcel dla anta
+Group:		Development/Languages/Java
+Requires:	%{name} = %{version}-%{release}
+Requires:	jakarta-bcel
+Provides:	ant-jakarta-bcel = %{version}-%{release}
+Obsoletes:	ant-jakarta-bcel
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
+
+%description apache-bcel
+Optional apache bcel tasks for %{name}.
+
+%description apache-bcel -l fr
+Taches apache bcel optionelles pour %{name}.
+
+%description apache-bcel -l pl
+Opcjonalne zadania apache bcel dla anta.
+
 %package apache-bsf
 Summary:	Optional apache bsf tasks for %{name}
 Summary(fr):	Taches apache bsf optionelles pour %{name}
@@ -129,6 +154,68 @@ Taches apache bsf optionelles pour %{name}.
 
 %description apache-bsf -l pl
 Opcjonalne zadania apache bsf dla anta.
+
+%package apache-log4j
+Summary:	Optional apache log4j tasks for %{name}
+Summary(fr):	Taches apache log4j optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache log4j dla anta
+Group:		Development/Languages/Java
+Requires:	%{name} = %{version}-%{release}
+Requires:	logging-log4j >= 1.2
+Provides:	ant-jakarta-log4j = %{version}-%{release}
+Obsoletes:	ant-jakarta-log4j
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
+
+%description apache-log4j
+Optional apache log4j tasks for %{name}.
+
+%description apache-log4j -l fr
+Taches apache log4j optionelles pour %{name}.
+
+%description apache-log4j -l pl
+Opcjonalne zadania apache log4j dla anta.
+
+%package apache-oro
+Summary:	Optional apache oro tasks for %{name}
+Summary(fr):	Taches apache oro optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache oro dla anta
+Group:		Development/Languages/Java
+Requires:	%{name} = %{version}-%{release}
+Requires:	jakarta-oro
+Provides:	ant-jakarta-oro = %{version}-%{release}
+Obsoletes:	ant-jakarta-oro
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
+
+%description apache-oro
+Optional apache oro tasks for %{name}.
+
+%description apache-oro -l fr
+Taches apache oro optionelles pour %{name}.
+
+%description apache-oro -l pl
+Opcjonalne zadania apache oro dla anta.
+
+%package apache-regexp
+Summary:	Optional apache regexp tasks for %{name}
+Summary(fr):	Taches apache regexp optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania apache regexp dla anta
+Group:		Development/Languages/Java
+Requires:	%{name} = %{version}-%{release}
+Requires:	jakarta-regexp
+Obsoletes:	ant-jakarta-regexp
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
+
+%description apache-regexp
+Optional apache regexp tasks for %{name}.
+
+%description apache-regexp -l fr
+Taches apache regexp optionelles pour %{name}.
+
+%description apache-regexp -l pl
+Opcjonalne zadania apache regexp dla anta.
 
 %package apache-resolver
 Summary:	Optional apache resolver tasks for %{name}
@@ -203,89 +290,6 @@ Taches jai optionelles pour %{name}.
 
 %description jai -l pl
 Opcjonalne zadania jai dla anta.
-
-%package apache-bcel
-Summary:	Optional apache bcel tasks for %{name}
-Summary(fr):	Taches apache bcel optionelles pour %{name}
-Summary(pl):	Opcjonalne zadania apache bcel dla anta
-Group:		Development/Languages/Java
-Requires:	%{name} = %{version}-%{release}
-Requires:	jakarta-bcel
-Provides:	ant-jakarta-bcel = %{version}-%{release}
-Obsoletes:	ant-jakarta-bcel
-Conflicts:	ant-optional-clean
-Conflicts:	ant-optional-full
-
-%description apache-bcel
-Optional apache bcel tasks for %{name}.
-
-%description apache-bcel -l fr
-Taches apache bcel optionelles pour %{name}.
-
-%description apache-bcel -l pl
-Opcjonalne zadania apache bcel dla anta.
-
-%package apache-log4j
-Summary:	Optional apache log4j tasks for %{name}
-Summary(fr):	Taches apache log4j optionelles pour %{name}
-Summary(pl):	Opcjonalne zadania apache log4j dla anta
-Group:		Development/Languages/Java
-Requires:	%{name} = %{version}-%{release}
-Requires:	logging-log4j >= 1.2
-Provides:	ant-jakarta-log4j = %{version}-%{release}
-Obsoletes:	ant-jakarta-log4j
-Conflicts:	ant-optional-clean
-Conflicts:	ant-optional-full
-
-%description apache-log4j
-Optional apache log4j tasks for %{name}.
-
-%description apache-log4j -l fr
-Taches apache log4j optionelles pour %{name}.
-
-%description apache-log4j -l pl
-Opcjonalne zadania apache log4j dla anta.
-
-%package apache-oro
-Summary:	Optional apache oro tasks for %{name}
-Summary(fr):	Taches apache oro optionelles pour %{name}
-Summary(pl):	Opcjonalne zadania apache oro dla anta
-Group:		Development/Languages/Java
-Requires:	%{name} = %{version}-%{release}
-Requires:	jakarta-oro
-Provides:	ant-jakarta-oro = %{version}-%{release}
-Obsoletes:	ant-jakarta-oro
-Conflicts:	ant-optional-clean
-Conflicts:	ant-optional-full
-
-%description apache-oro
-Optional apache oro tasks for %{name}.
-
-%description apache-oro -l fr
-Taches apache oro optionelles pour %{name}.
-
-%description apache-oro -l pl
-Opcjonalne zadania apache oro dla anta.
-
-%package apache-regexp
-Summary:	Optional apache regexp tasks for %{name}
-Summary(fr):	Taches apache regexp optionelles pour %{name}
-Summary(pl):	Opcjonalne zadania apache regexp dla anta
-Group:		Development/Languages/Java
-Requires:	%{name} = %{version}-%{release}
-Requires:	jakarta-regexp
-Obsoletes:	ant-jakarta-regexp
-Conflicts:	ant-optional-clean
-Conflicts:	ant-optional-full
-
-%description apache-regexp
-Optional apache regexp tasks for %{name}.
-
-%description apache-regexp -l fr
-Taches apache regexp optionelles pour %{name}.
-
-%description apache-regexp -l pl
-Opcjonalne zadania apache regexp dla anta.
 
 %package javamail
 Summary:	Optional javamail tasks for %{name}
@@ -381,6 +385,24 @@ Taches junit optionelles pour %{name}.
 
 %description junit -l pl
 Opcjonalne zadania junit dla anta.
+
+%package netrexx
+Summary:	Optional netrexx tasks for %{name}
+Summary(fr):	Taches netrexx optionelles pour %{name}
+Summary(pl):	Opcjonalne zadania netrexx dla anta
+Group:		Development/Languages/Java
+Requires:	%{name} = %{version}-%{release}
+Conflicts:	ant-optional-clean
+Conflicts:	ant-optional-full
+
+%description netrexx
+Optional netrexx tasks for %{name}.
+
+%description netrexx -l fr
+Taches netrexx optionelles pour %{name}.
+
+%description netrexx -l pl
+Opcjonalne zadania netrexx dla anta.
 
 %package nodeps
 Summary:	Optional tasks for %{name}
@@ -511,7 +533,7 @@ required_jars="jaxp_parser_impl"
 %{?with_junit:required_jars="$required_jars junit"}
 %{?with_antlr:required_jars="$required_jars antlr"}
 %{?with_apache_bsf:required_jars="$required_jars bsf jython bsh"}
-%{?with_apache_resolver:required_jars="$required_jars xml-commons-resolver"}
+%{?with_apache_resolver:required_jars="$required_jars resolver"}
 %{?with_commons_logging:required_jars="$required_jars commons-logging"}
 %{?with_commons_net:required_jars="$required_jars commons-net"}
 %{?with_jai:required_jars="$required_jars jait"}
@@ -522,6 +544,7 @@ required_jars="jaxp_parser_impl"
 %{?with_javamail:required_jars="$required_jars mailapi activation"}
 %{?with_jdepend:required_jars="$required_jars jdepend"}
 %{?with_jsch:required_jars="$required_jars jsch"}
+%{?with_netrexx:required_jars="$required_jars NetRexxC"}
 
 export CLASSPATH="`/usr/bin/build-classpath $required_jars`"
 
@@ -632,6 +655,11 @@ install build/lib/%{name}-jsch.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-js
 echo "jsch ant/ant-jsch" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/jsch
 %endif
 
+%if %{with netrexx}
+install build/lib/%{name}-netrexx.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-netrexx-%{version}.jar
+echo "netrexx ant/ant-netrexx" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/netrexx
+%endif
+
 # jar aliases
 (cd $RPM_BUILD_ROOT%{_javadir} && for jar in *-%{version}.jar; do ln -sf ${jar} `echo $jar| sed "s|-%{version}||g"`; done)
 (cd $RPM_BUILD_ROOT%{_javadir}/%{name} && for jar in *-%{version}.jar; do ln -sf ${jar} `echo $jar| sed "s|-%{version}||g"`; done)
@@ -654,7 +682,7 @@ ln -s %{name}-%{version} %{_javadocdir}/%{name}
 
 %postun javadoc
 if [ "$1" = "0" ]; then
-  rm -f %{_javadocdir}/%{name}
+	rm -f %{_javadocdir}/%{name}
 fi
 
 %files
@@ -679,55 +707,6 @@ fi
 %dir %{_sysconfdir}/%{name}.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
 
-%files nodeps
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-nodeps.jar
-%{_javadir}/%{name}/%{name}-nodeps-%{version}.jar
-%{_sysconfdir}/%{name}.d/nodeps
-
-%files swing
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-swing.jar
-%{_javadir}/%{name}/%{name}-swing-%{version}.jar
-%{_sysconfdir}/%{name}.d/swing
-
-%files trax
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-trax.jar
-%{_javadir}/%{name}/%{name}-trax-%{version}.jar
-%{_sysconfdir}/%{name}.d/trax
-%{ant_home}/etc/mmetrics-frames.xsl
-%{ant_home}/etc/coverage-frames.xsl
-
-%files jmf
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-jmf.jar
-%{_javadir}/%{name}/%{name}-jmf-%{version}.jar
-%{_sysconfdir}/%{name}.d/jmf
-
-%files scripts
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*.pl
-%attr(755,root,root) %{_bindir}/*.py
-
-%files doc
-%defattr(644,root,root,755)
-%doc docs/*
-
-%files javadoc
-%defattr(644,root,root,755)
-%{_javadocdir}/%{name}-%{version}
-
-%if %{with junit}
-%files junit
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-junit.jar
-%{_javadir}/%{name}/%{name}-junit-%{version}.jar
-%{_sysconfdir}/%{name}.d/junit
-%{ant_home}/etc/junit-frames.xsl
-%{ant_home}/etc/junit-noframes.xsl
-%endif
-
 %if %{with antlr}
 %files antlr
 %defattr(644,root,root,755)
@@ -736,12 +715,49 @@ fi
 %{_sysconfdir}/%{name}.d/antlr
 %endif
 
+%if %{with apache_bcel}
+%files apache-bcel
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-apache-bcel.jar
+%{_javadir}/%{name}/%{name}-apache-bcel-%{version}.jar
+%{_javadir}/%{name}/%{name}-jakarta-bcel.jar
+%{_sysconfdir}/%{name}.d/apache-bcel
+%endif
+
 %if %{with apache_bsf}
 %files apache-bsf
 %defattr(644,root,root,755)
 %{_javadir}/%{name}/%{name}-apache-bsf.jar
 %{_javadir}/%{name}/%{name}-apache-bsf-%{version}.jar
 %{_sysconfdir}/%{name}.d/apache-bsf
+%endif
+
+%if %{with apache_log4j}
+%files apache-log4j
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-apache-log4j.jar
+%{_javadir}/%{name}/%{name}-apache-log4j-%{version}.jar
+%{_javadir}/%{name}/%{name}-jakarta-log4j.jar
+%{_sysconfdir}/%{name}.d/apache-log4j
+%endif
+
+%if %{with apache_oro}
+%files apache-oro
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-apache-oro.jar
+%{_javadir}/%{name}/%{name}-apache-oro-%{version}.jar
+%{_javadir}/%{name}/%{name}-jakarta-oro.jar
+%{_sysconfdir}/%{name}.d/apache-oro
+%{ant_home}/etc/maudit-frames.xsl
+%endif
+
+%if %{with apache_regexp}
+%files apache-regexp
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-apache-regexp.jar
+%{_javadir}/%{name}/%{name}-apache-regexp-%{version}.jar
+%{_javadir}/%{name}/%{name}-jakarta-regexp.jar
+%{_sysconfdir}/%{name}.d/apache-regexp
 %endif
 
 %if %{with apache_resolver}
@@ -776,43 +792,6 @@ fi
 %{_sysconfdir}/%{name}.d/jai
 %endif
 
-%if %{with apache_bcel}
-%files apache-bcel
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-apache-bcel.jar
-%{_javadir}/%{name}/%{name}-apache-bcel-%{version}.jar
-%{_javadir}/%{name}/%{name}-jakarta-bcel.jar
-%{_sysconfdir}/%{name}.d/apache-bcel
-%endif
-
-%if %{with apache_log4j}
-%files apache-log4j
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-apache-log4j.jar
-%{_javadir}/%{name}/%{name}-apache-log4j-%{version}.jar
-%{_javadir}/%{name}/%{name}-jakarta-log4j.jar
-%{_sysconfdir}/%{name}.d/apache-log4j
-%endif
-
-%if %{with apache_oro}
-%files apache-oro
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-apache-oro.jar
-%{_javadir}/%{name}/%{name}-apache-oro-%{version}.jar
-%{_javadir}/%{name}/%{name}-jakarta-oro.jar
-%{_sysconfdir}/%{name}.d/apache-oro
-%{ant_home}/etc/maudit-frames.xsl
-%endif
-
-%if %{with apache_regexp}
-%files apache-regexp
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-apache-regexp.jar
-%{_javadir}/%{name}/%{name}-apache-regexp-%{version}.jar
-%{_javadir}/%{name}/%{name}-jakarta-regexp.jar
-%{_sysconfdir}/%{name}.d/apache-regexp
-%endif
-
 %if %{with javamail}
 %files javamail
 %defattr(644,root,root,755)
@@ -831,6 +810,12 @@ fi
 %{ant_home}/etc/jdepend-frames.xsl
 %endif
 
+%files jmf
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-jmf.jar
+%{_javadir}/%{name}/%{name}-jmf-%{version}.jar
+%{_sysconfdir}/%{name}.d/jmf
+
 %if %{with jsch}
 %files jsch
 %defattr(644,root,root,755)
@@ -838,3 +823,54 @@ fi
 %{_javadir}/%{name}/%{name}-jsch-%{version}.jar
 %{_sysconfdir}/%{name}.d/jsch
 %endif
+
+%if %{with junit}
+%files junit
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-junit.jar
+%{_javadir}/%{name}/%{name}-junit-%{version}.jar
+%{_sysconfdir}/%{name}.d/junit
+%{ant_home}/etc/junit-frames.xsl
+%{ant_home}/etc/junit-noframes.xsl
+%endif
+
+%if %{with netrexx}
+%files netrexx
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-netrexx.jar
+%{_javadir}/%{name}/%{name}-netrexx-%{version}.jar
+%{_sysconfdir}/%{name}.d/netrexx
+%endif
+
+%files nodeps
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-nodeps.jar
+%{_javadir}/%{name}/%{name}-nodeps-%{version}.jar
+%{_sysconfdir}/%{name}.d/nodeps
+
+%files swing
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-swing.jar
+%{_javadir}/%{name}/%{name}-swing-%{version}.jar
+%{_sysconfdir}/%{name}.d/swing
+
+%files trax
+%defattr(644,root,root,755)
+%{_javadir}/%{name}/%{name}-trax.jar
+%{_javadir}/%{name}/%{name}-trax-%{version}.jar
+%{_sysconfdir}/%{name}.d/trax
+%{ant_home}/etc/mmetrics-frames.xsl
+%{ant_home}/etc/coverage-frames.xsl
+
+%files scripts
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/*.pl
+%attr(755,root,root) %{_bindir}/*.py
+
+%files doc
+%defattr(644,root,root,755)
+%doc docs/*
+
+%files javadoc
+%defattr(644,root,root,755)
+%{_javadocdir}/%{name}-%{version}
