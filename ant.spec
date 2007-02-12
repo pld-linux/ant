@@ -37,9 +37,9 @@
 #
 %define		_rel	0.1
 Summary:	Ant build tool for Java
-Summary(fr.UTF-8):   Outil de compilation pour java
-Summary(it.UTF-8):   Tool per la compilazione di programmi java
-Summary(pl.UTF-8):   Ant - narzędzie do budowania w Javie
+Summary(fr.UTF-8):	Outil de compilation pour java
+Summary(it.UTF-8):	Tool per la compilazione di programmi java
+Summary(pl.UTF-8):	Ant - narzędzie do budowania w Javie
 Name:		ant
 Version:	1.7.0
 Release:	%{?with_bootstrap:bootstrap.}%{_rel}
@@ -98,8 +98,8 @@ używany przez projekty apache jakarta i xml.
 
 %package antlr
 Summary:	Optional antlr tasks for %{name}
-Summary(fr.UTF-8):   Taches antlr optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania antlr dla anta
+Summary(fr.UTF-8):	Taches antlr optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania antlr dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	antlr
@@ -117,8 +117,8 @@ Opcjonalne zadania antlr dla anta.
 
 %package apache-bcel
 Summary:	Optional apache bcel tasks for %{name}
-Summary(fr.UTF-8):   Taches apache bcel optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania apache bcel dla anta
+Summary(fr.UTF-8):	Taches apache bcel optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania apache bcel dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jakarta-bcel
@@ -138,8 +138,8 @@ Opcjonalne zadania apache bcel dla anta.
 
 %package apache-bsf
 Summary:	Optional apache bsf tasks for %{name}
-Summary(fr.UTF-8):   Taches apache bsf optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania apache bsf dla anta
+Summary(fr.UTF-8):	Taches apache bsf optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania apache bsf dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	bsf
@@ -157,8 +157,8 @@ Opcjonalne zadania apache bsf dla anta.
 
 %package apache-log4j
 Summary:	Optional apache log4j tasks for %{name}
-Summary(fr.UTF-8):   Taches apache log4j optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania apache log4j dla anta
+Summary(fr.UTF-8):	Taches apache log4j optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania apache log4j dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	logging-log4j >= 1.2
@@ -178,8 +178,8 @@ Opcjonalne zadania apache log4j dla anta.
 
 %package apache-oro
 Summary:	Optional apache oro tasks for %{name}
-Summary(fr.UTF-8):   Taches apache oro optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania apache oro dla anta
+Summary(fr.UTF-8):	Taches apache oro optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania apache oro dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jakarta-oro
@@ -199,8 +199,8 @@ Opcjonalne zadania apache oro dla anta.
 
 %package apache-regexp
 Summary:	Optional apache regexp tasks for %{name}
-Summary(fr.UTF-8):   Taches apache regexp optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania apache regexp dla anta
+Summary(fr.UTF-8):	Taches apache regexp optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania apache regexp dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jakarta-regexp
@@ -219,8 +219,8 @@ Opcjonalne zadania apache regexp dla anta.
 
 %package apache-resolver
 Summary:	Optional apache resolver tasks for %{name}
-Summary(fr.UTF-8):   Taches apache resolver optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania apache resolver dla anta
+Summary(fr.UTF-8):	Taches apache resolver optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania apache resolver dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	xml-commons-resolver
@@ -236,8 +236,8 @@ Taches apache resolver optionelles pour %{name}.
 
 %package commons-logging
 Summary:	Optional commons logging tasks for %{name}
-Summary(fr.UTF-8):   Taches commons logging optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania commons logging dla anta
+Summary(fr.UTF-8):	Taches commons logging optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania commons logging dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jakarta-commons-logging
@@ -255,8 +255,8 @@ Opcjonalne zadania commons logging dla anta.
 
 %package commons-net
 Summary:	Optional commons net tasks for %{name}
-Summary(fr.UTF-8):   Taches commons net optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania commons net dla anta
+Summary(fr.UTF-8):	Taches commons net optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania commons net dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jakarta-commons-net
@@ -274,8 +274,8 @@ Opcjonalne zadania commons net dla anta.
 
 %package jai
 Summary:	Optional jai tasks for %{name}
-Summary(fr.UTF-8):   Taches jai optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania jai dla anta
+Summary(fr.UTF-8):	Taches jai optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania jai dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jai
@@ -293,8 +293,8 @@ Opcjonalne zadania jai dla anta.
 
 %package javamail
 Summary:	Optional javamail tasks for %{name}
-Summary(fr.UTF-8):   Taches javamail optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania javamail dla anta
+Summary(fr.UTF-8):	Taches javamail optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania javamail dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jaf
@@ -313,8 +313,8 @@ Opcjonalne zadania javamail dla anta.
 
 %package jdepend
 Summary:	Optional jdepend tasks for %{name}
-Summary(fr.UTF-8):   Taches jdepend optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania jdepend dla anta
+Summary(fr.UTF-8):	Taches jdepend optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania jdepend dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jdepend
@@ -332,8 +332,8 @@ Opcjonalne zadania jdepend dla anta.
 
 %package jmf
 Summary:	Optional jmf tasks for %{name}
-Summary(fr.UTF-8):   Taches jmf optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania jmf dla anta
+Summary(fr.UTF-8):	Taches jmf optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania jmf dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Conflicts:	ant-optional-clean
@@ -350,8 +350,8 @@ Opcjonalne zadania jmf dla anta.
 
 %package jsch
 Summary:	Optional jsch tasks for %{name}
-Summary(fr.UTF-8):   Taches jsch optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania jsch dla anta
+Summary(fr.UTF-8):	Taches jsch optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania jsch dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jsch >= 0.1.21
@@ -369,8 +369,8 @@ Opcjonalne zadania jsch dla anta.
 
 %package junit
 Summary:	Optional junit tasks for %{name}
-Summary(fr.UTF-8):   Taches junit optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania junit dla anta
+Summary(fr.UTF-8):	Taches junit optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania junit dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	junit
@@ -388,8 +388,8 @@ Opcjonalne zadania junit dla anta.
 
 %package netrexx
 Summary:	Optional netrexx tasks for %{name}
-Summary(fr.UTF-8):   Taches netrexx optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania netrexx dla anta
+Summary(fr.UTF-8):	Taches netrexx optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania netrexx dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Conflicts:	ant-optional-clean
@@ -406,8 +406,8 @@ Opcjonalne zadania netrexx dla anta.
 
 %package nodeps
 Summary:	Optional tasks for %{name}
-Summary(fr.UTF-8):   Taches optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania dla anta
+Summary(fr.UTF-8):	Taches optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Conflicts:	ant-optional-clean
@@ -424,8 +424,8 @@ Opcjonalne zadania dla anta.
 
 %package swing
 Summary:	Optional swing tasks for %{name}
-Summary(fr.UTF-8):   Taches swing optionelles pour %{name}
-Summary(pl.UTF-8):   Opcjonalne zadania swing dla anta
+Summary(fr.UTF-8):	Taches swing optionelles pour %{name}
+Summary(pl.UTF-8):	Opcjonalne zadania swing dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Conflicts:	ant-optional-clean
@@ -442,8 +442,8 @@ Opcjonalne zadania swing dla anta.
 
 %package trax
 Summary:	Optional trax tasks for %{name}
-Summary(fr.UTF-8):   Taches trax optionelles pour %{name}
-Summary(pl.UTF-8):   Dodatkowe zadania trax dla anta
+Summary(fr.UTF-8):	Taches trax optionelles pour %{name}
+Summary(pl.UTF-8):	Dodatkowe zadania trax dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jaxp_transform_impl
@@ -463,8 +463,8 @@ Dodatkowe zadania trax dla anta.
 
 %package scripts
 Summary:	Additional scripts for %{name}
-Summary(fr.UTF-8):   Scripts additionels pour %{name}
-Summary(pl.UTF-8):   Dodatkowe skrypty dla anta
+Summary(fr.UTF-8):	Scripts additionels pour %{name}
+Summary(pl.UTF-8):	Dodatkowe skrypty dla anta
 Group:		Development/Languages/Java
 AutoReqProv:	no
 Requires:	%{name} = %{version}-%{release}
@@ -482,9 +482,9 @@ Dodatkowe skrypty dla anta.
 
 %package doc
 Summary:	Manual for %{name}
-Summary(fr.UTF-8):   Documentation pour %{name}
-Summary(it.UTF-8):   Documentazione di %{name}
-Summary(pl.UTF-8):   Podręcznik dla anta
+Summary(fr.UTF-8):	Documentation pour %{name}
+Summary(it.UTF-8):	Documentazione di %{name}
+Summary(pl.UTF-8):	Podręcznik dla anta
 Group:		Development/Languages/Java
 
 %description doc
@@ -501,7 +501,7 @@ Dokumentacja do anta.
 
 %package javadoc
 Summary:	Online manual for ant
-Summary(pl.UTF-8):   Dokumentacja online do ant
+Summary(pl.UTF-8):	Dokumentacja online do ant
 Group:		Documentation
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant-doc
