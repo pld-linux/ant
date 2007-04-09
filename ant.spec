@@ -1,5 +1,13 @@
 # TODO
 # - prepare all BR and test the full build
+# - optional jar todo:
+#    <optional-jar dep="icontract"/>
+#    <optional-jar dep="netrexx"/>
+#    <optional-jar dep="starteam"/>
+#    <optional-jar dep="stylebook"/>
+#    <optional-jar dep="vaj"/>
+#    <optional-jar dep="xalan1"/>
+#    <optional-jar dep="xslp"/>
 #
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
