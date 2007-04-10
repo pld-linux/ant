@@ -41,6 +41,7 @@
 %endif
 #
 %define		_rel	5
+%include	/usr/lib/rpm/macros.java
 Summary:	Ant build tool for Java
 Summary(fr):	Outil de compilation pour java
 Summary(it):	Tool per la compilazione di programmi java
@@ -67,7 +68,7 @@ URL:		http://ant.apache.org/
 %{?with_apache_regexp:BuildRequires:	jakarta-regexp}
 %{?with_javamail:BuildRequires:	javamail}
 BuildRequires:	jaxp_parser_impl
-BuildRequires:	jdk
+BuildRequires:	jdk >= 1.5
 BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch}
 %{?with_junit:BuildRequires:	junit}
@@ -75,6 +76,7 @@ BuildRequires:	jpackage-utils
 %{?with_apache_log4j:BuildRequires:	logging-log4j}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	xml-commons
 Requires:	jdk
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
@@ -508,7 +510,7 @@ jakarta i xml.
 %patch1 -p1
 
 # clean jar files
-find . -name "*.jar" -exec rm -f {} \;
+find -name '*.jar' | xargs rm -f
 
 sed -i -e 's|@BINDIR@|%{_bindir}|g' \
 	src/main/org/apache/tools/ant/taskdefs/Exec.java \
@@ -517,7 +519,7 @@ sed -i -e 's|@BINDIR@|%{_bindir}|g' \
 %build
 export JAVA_HOME="%{java_home}"
 
-required_jars="jaxp_parser_impl"
+required_jars="jaxp_parser_impl xml-commons-apis"
 %{?with_junit:required_jars="$required_jars junit"}
 %{?with_antlr:required_jars="$required_jars antlr"}
 %{?with_apache_bsf:required_jars="$required_jars bsf jython bsh"}
@@ -533,15 +535,9 @@ required_jars="jaxp_parser_impl"
 %{?with_jdepend:required_jars="$required_jars jdepend"}
 %{?with_jsch:required_jars="$required_jars jsch"}
 
-export CLASSPATH="`/usr/bin/build-classpath $required_jars`"
+export CLASSPATH=$(/usr/bin/build-classpath $required_jars)
 
-export ANT_HOME=./bootstrap
-
-# bootstrap
-sh -x ./bootstrap.sh
-
-# build
-sh -x ./bootstrap/bin/ant -lib lib/optional -emacs --noconfig main javadocs
+sh -e build.sh --noconfig main javadocs
 
 %install
 rm -rf $RPM_BUILD_ROOT
