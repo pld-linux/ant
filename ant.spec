@@ -1,22 +1,22 @@
+%include	/usr/lib/rpm/macros.java
 Summary:	ant build tool for Java
 Summary(pl):	ant - narzêdzie do budowania w Javie
 Name:		jakarta-ant
-Version:	1.4.1
-Release:	4
+Version:	1.5.1
+Release:	0.1
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://archive.apache.org/dist/ant/source/%{name}-%{version}-src.zip
-# Source0-md5:	e6bbfcfd3934ff19903d905821582fe4
-Source1:	http://jakarta.apache.org/builds/jakarta-ant/release/v%{version}/bin/%{name}-%{version}-optional.jar
-# Source1-md5:	319583f83c98e7c9db4d73b2d1122d76
-Patch0:		%{name}-ANT_HOME.patch
+# Source0-md5:	9559f9a3b6f110dd9f297e604d00c22c
 URL:		http://jakarta.apache.org/ant/
 BuildRequires:	jdk
+BuildRequires:	rpm-javaprov
+BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jdk
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_javalibdir	/usr/share/java
+%define		_javadir	/usr/share/java
 
 %description
 Platform-independent build tool for Java. Ant is a Java based build
@@ -42,28 +42,22 @@ w Javie.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-if [ -z "$JAVA_HOME" ]; then
-	JAVA_HOME=%{_libdir}/java
-fi
-CLASSPATH="$JAVA_HOME/jre/lib/rt.jar:%{SOURCE1}"
-export JAVA_HOME CLASSPATH
+export JAVA_HOME="%{java_home}"
 
-cp -f %{SOURCE1} .
 sh build.sh
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_bindir}
-install -d $RPM_BUILD_ROOT%{_javalibdir}
+install -d $RPM_BUILD_ROOT%{_javadir}
 install bootstrap/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
-install bootstrap/lib/*.jar $RPM_BUILD_ROOT%{_javalibdir}
+install bootstrap/lib/*.jar $RPM_BUILD_ROOT%{_javadir}
 
 # this looks strange
-ln -sf . $RPM_BUILD_ROOT%{_javalibdir}/lib
+ln -sf . $RPM_BUILD_ROOT%{_javadir}/lib
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,8 +69,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/antRun
 %attr(755,root,root) %{_bindir}/runant.pl
 %attr(755,root,root) %{_bindir}/runant.py
-%{_javalibdir}/lib
-%{_javalibdir}/*.jar
+%{_javadir}/lib
+%{_javadir}/*.jar
 
 %files doc
 %defattr(644,root,root,755)
