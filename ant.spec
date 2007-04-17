@@ -5,8 +5,10 @@ Version:	1.4.1
 Release:	4
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/src/%{name}-%{version}-src.tar.gz
-Source1:	http://jakarta.apache.org/builds/%{name}/release/v%{version}/bin/%{name}-%{version}-optional.jar
+Source0:	http://archive.apache.org/dist/ant/source/%{name}-%{version}-src.zip
+# Source0-md5:	e6bbfcfd3934ff19903d905821582fe4
+Source1:	http://jakarta.apache.org/builds/jakarta-ant/release/v%{version}/bin/%{name}-%{version}-optional.jar
+# Source1-md5:	319583f83c98e7c9db4d73b2d1122d76
 Patch0:		%{name}-ANT_HOME.patch
 URL:		http://jakarta.apache.org/ant/
 BuildRequires:	jdk
@@ -44,7 +46,7 @@ w Javie.
 
 %build
 if [ -z "$JAVA_HOME" ]; then
-	JAVA_HOME=/usr/lib/java
+	JAVA_HOME=%{_libdir}/java
 fi
 CLASSPATH="$JAVA_HOME/jre/lib/rt.jar:%{SOURCE1}"
 export JAVA_HOME CLASSPATH
