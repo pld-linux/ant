@@ -1,6 +1,6 @@
 # TODO
 # - prepare all BR and test the full build
-#   (TODO: stylebook, starteam, jdepend, weblogic)
+#   (TODO: stylebook, starteam, weblogic)
 #
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
@@ -16,7 +16,7 @@
 %bcond_without	commons_net	# disable building commons-net optional task(s)
 %bcond_without	jai		# disable building jai optional task(s)
 %bcond_without	javamail	# disable building javamail optional task(s)
-%bcond_with	jdepend		# enable building jdepend optional task(s)
+%bcond_without	jdepend		# disable building jdepend optional task(s)
 %bcond_without	jsch		# disable building jsch optional task(s)
 %bcond_without	junit		# disable building junit optional task(s)
 %bcond_without	netrexx		# disable building netrexx optional taks(s)
@@ -34,7 +34,9 @@
 %undefine	with_apache_resolver
 %undefine	with_commons_logging
 %undefine	with_commons_net
+%undefine	with_jai
 %undefine	with_javamail
+%undefine	with_jdepend
 %undefine	with_jsch
 %undefine	with_netrexx
 %endif
