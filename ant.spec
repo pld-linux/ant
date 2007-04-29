@@ -1,6 +1,9 @@
 # TODO
 # - prepare all BR and test the full build
-#   (TODO: stylebook, starteam, weblogic)
+#   TODO:
+#   - stylebook: http://svn.apache.org/viewcvs.cgi/xml/stylebook/
+#   - starteam: http://www.borland.com/downloads/download_starteam.html (30-day trial, needs registration)
+#   - weblogic: http://www.bea.com/ ? (needs registration)
 #
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
