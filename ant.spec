@@ -4,6 +4,7 @@
 #
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
+%bcond_with	nonfree		# build tasks with non-distributable dependencies
 %bcond_without	antlr		# disable building antlr optional task(s)
 %bcond_without	apache_bcel	# disable building apache-bcel optional task(s)
 %bcond_without	apache_bsf	# disable building apache-bsf optional task(s)
@@ -13,13 +14,16 @@
 %bcond_without	apache_resolver	# disable building apache-resolver optional task(s)
 %bcond_without	commons_logging	# disable building commons-logging optional task(s)
 %bcond_without	commons_net	# disable building commons-net optional task(s)
-%bcond_with	jai		# enable building jai optional task(s)
+%bcond_without	jai		# disable building jai optional task(s)
 %bcond_without	javamail	# disable building javamail optional task(s)
 %bcond_with	jdepend		# enable building jdepend optional task(s)
 %bcond_without	jsch		# disable building jsch optional task(s)
 %bcond_without	junit		# disable building junit optional task(s)
 %bcond_without	netrexx		# disable building netrexx optional taks(s)
 #
+%if !%{with nonfree}
+%undefine	with_jai
+%endif
 %if %{with bootstrap}
 %undefine	with_antlr
 %undefine	with_apache_bcel
@@ -59,6 +63,7 @@ URL:		http://ant.apache.org/
 %{?with_commons_net:BuildRequires:	jakarta-commons-net}
 %{?with_apache_oro:BuildRequires:	jakarta-oro}
 %{?with_apache_regexp:BuildRequires:	jakarta-regexp}
+%{?with_jai:BuildRequires:	jai}
 %{?with_javamail:BuildRequires:	javamail}
 BuildRequires:	jaxp_parser_impl
 BuildRequires:	jdk
@@ -537,7 +542,7 @@ required_jars="jaxp_parser_impl"
 %{?with_apache_resolver:required_jars="$required_jars resolver"}
 %{?with_commons_logging:required_jars="$required_jars commons-logging"}
 %{?with_commons_net:required_jars="$required_jars commons-net"}
-%{?with_jai:required_jars="$required_jars jait"}
+%{?with_jai:required_jars="$required_jars jai_core jai_codec"}
 %{?with_apache_bcel:required_jars="$required_jars bcel"}
 %{?with_apache_log4j:required_jars="$required_jars log4j"}
 %{?with_apache_oro:required_jars="$required_jars oro"}
