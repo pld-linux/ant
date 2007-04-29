@@ -1,6 +1,6 @@
 # TODO
 # - prepare all BR and test the full build
-#   (TODO: stylebook, starteam, jai, jdepend, weblogic)
+#   (TODO: stylebook, starteam, jdepend, weblogic)
 #
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
