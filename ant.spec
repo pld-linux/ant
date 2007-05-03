@@ -24,7 +24,7 @@
 %bcond_without	junit		# disable building junit optional task(s)
 %bcond_without	netrexx		# disable building netrexx optional taks(s)
 #
-%if !%{with nonfree}
+%if %{without nonfree}
 %undefine	with_jai
 %endif
 %if %{with bootstrap}
