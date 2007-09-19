@@ -44,7 +44,7 @@
 %undefine	with_netrexx
 %endif
 #
-%define		_rel	0.1
+%define		_rel	1
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
