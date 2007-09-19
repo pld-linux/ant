@@ -51,7 +51,7 @@ Summary(it.UTF-8):	Tool per la compilazione di programmi java
 Summary(pl.UTF-8):	Ant - narzędzie do budowania w Javie
 Name:		ant
 Version:	1.7.0
-Release:	%{rel}%{?with_bootstrap:.bootstrap}
+Release:	%{_rel}%{?with_bootstrap:.bootstrap}
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
