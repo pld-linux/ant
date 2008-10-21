@@ -679,6 +679,7 @@ echo "netrexx ant/ant-netrexx" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/netrexx
 # javadoc
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 cp -pr build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name}
 
 # fix link between manual and javadoc
 cd docs/manual
@@ -687,15 +688,6 @@ cd ..
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%post javadoc
-rm -f %{_javadocdir}/%{name}
-ln -s %{name}-%{version} %{_javadocdir}/%{name}
-
-%postun javadoc
-if [ "$1" = "0" ]; then
-	rm -f %{_javadocdir}/%{name}
-fi
 
 %files
 %defattr(644,root,root,755)
@@ -886,3 +878,4 @@ fi
 %files javadoc
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}-%{version}
+%{_javadocdir}/%{name}
