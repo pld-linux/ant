@@ -538,6 +538,9 @@ sed -i -e 's|@BINDIR@|%{_bindir}|g' \
 	src/main/org/apache/tools/ant/taskdefs/Exec.java \
 	src/main/org/apache/tools/ant/taskdefs/Execute.java
 
+# fix link between manual and javadoc
+ln -sf %{_javadocdir}/%{name}-%{version} docs/manual/api
+
 %build
 export JAVA_HOME="%{java_home}"
 
@@ -680,11 +683,6 @@ echo "netrexx ant/ant-netrexx" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/netrexx
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 cp -pr build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
-
-# fix link between manual and javadoc
-cd docs/manual
-ln -sf %{_javadocdir}/%{name}-%{version} api
-cd ..
 
 %clean
 rm -rf $RPM_BUILD_ROOT
