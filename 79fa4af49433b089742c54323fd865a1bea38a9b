@@ -1,0 +1,1 @@
+- do not modify $RPM_BUILD_DIR in %install. It breaks ./repackage.sh.
