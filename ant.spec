@@ -57,18 +57,17 @@ Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
 # Source0-md5:	22b378e27ab300e4d73bf09d91c7e2a6
 Source1:	%{name}.conf
-Patch0:		%{name}-antRun.patch
 URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{?with_apache_bsf:BuildRequires:	beanshell}
 %{?with_apache_bsf:BuildRequires:	bsf}
 %{?with_javamail:BuildRequires:	jaf}
+%{?with_jai:BuildRequires:	jai}
 %{?with_apache_bcel:BuildRequires:	jakarta-bcel}
 %{?with_commons_logging:BuildRequires:	jakarta-commons-logging}
 %{?with_commons_net:BuildRequires:	jakarta-commons-net}
 %{?with_apache_oro:BuildRequires:	jakarta-oro}
 %{?with_apache_regexp:BuildRequires:	jakarta-regexp}
-%{?with_jai:BuildRequires:	jai}
 %{?with_javamail:BuildRequires:	javamail}
 BuildRequires:	jaxp_parser_impl
 %{?with_jdepend:BuildRequires:	jdepend}
@@ -82,6 +81,7 @@ BuildRequires:	jpackage-utils
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 %{?with_apache_resolver:BuildRequires:	xml-commons-resolver}
+Patch0:		%{name}-antRun.patch
 Requires:	jdk
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
@@ -561,7 +561,7 @@ required_jars="jaxp_parser_impl"
 %{?with_jsch:required_jars="$required_jars jsch"}
 %{?with_netrexx:required_jars="$required_jars NetRexxC"}
 
-export CLASSPATH="`/usr/bin/build-classpath $required_jars`"
+export CLASSPATH="`%{_bindir}/build-classpath $required_jars`"
 
 sh build.sh --noconfig main javadocs
 
