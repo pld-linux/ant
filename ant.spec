@@ -689,6 +689,9 @@ cd ..
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post javadoc
+ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
+
 %files
 %defattr(644,root,root,755)
 %doc KEYS LICENSE* README WHATSNEW
