@@ -57,6 +57,7 @@ Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
 # Source0-md5:	22b378e27ab300e4d73bf09d91c7e2a6
 Source1:	%{name}.conf
+Patch0:		%{name}-antRun.patch
 URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{?with_apache_bsf:BuildRequires:	beanshell}
@@ -81,7 +82,6 @@ BuildRequires:	jpackage-utils
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 %{?with_apache_resolver:BuildRequires:	xml-commons-resolver}
-Patch0:		%{name}-antRun.patch
 Requires:	jdk
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
