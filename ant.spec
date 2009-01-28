@@ -44,7 +44,7 @@
 %undefine	with_netrexx
 %endif
 #
-%define		_rel	2
+%define		_rel	3
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
@@ -58,6 +58,7 @@ Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar
 # Source0-md5:	0d68db4a1ada5c91bcbf53cefd0c2fd7
 Source1:	%{name}.conf
 Patch0:		%{name}-antRun.patch
+Patch1:		%{name}-gcjtask.patch
 URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{?with_apache_bsf:BuildRequires:	beanshell}
@@ -530,6 +531,7 @@ jakarta i xml.
 %prep
 %setup -q -n apache-%{name}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 # clean jar files
 find . -name "*.jar" -exec rm -f {} \;
