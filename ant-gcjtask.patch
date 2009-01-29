@@ -1,12 +1,17 @@
 --- apache-ant-1.7.1/src/main/org/apache/tools/ant/taskdefs/compilers/Gcj.java~	2008-06-27 07:05:16.000000000 +0200
 +++ apache-ant-1.7.1/src/main/org/apache/tools/ant/taskdefs/compilers/Gcj.java	2009-01-28 09:43:14.000000000 +0100
-@@ -112,6 +112,11 @@
+@@ -112,6 +112,16 @@
              cmd.createArgument().setValue("-C");
          }
  
 +        if (attributes.getSource() != null) {
 +            String source = attributes.getSource();
 +            cmd.createArgument().setValue("-fsource=" + source);
++        }
++
++        if (attributes.getTarget() != null) {
++            String target = attributes.getTarget();
++            cmd.createArgument().setValue("-ftarget=" + target);
 +        }
 +
          addCurrentCompilerArgs(cmd);
