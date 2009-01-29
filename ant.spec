@@ -44,7 +44,7 @@
 %undefine	with_netrexx
 %endif
 #
-%define		_rel	3
+%define		_rel	4
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
@@ -58,6 +58,8 @@ Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar
 # Source0-md5:	0d68db4a1ada5c91bcbf53cefd0c2fd7
 Source1:	%{name}.conf
 Patch0:		%{name}-antRun.patch
+# patch1 has been applied to ant sources in svn. It won't be needed for the
+# next release of ant.
 Patch1:		%{name}-gcjtask.patch
 URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
@@ -563,7 +565,7 @@ required_jars="jaxp_parser_impl"
 %{?with_jsch:required_jars="$required_jars jsch"}
 %{?with_netrexx:required_jars="$required_jars NetRexxC"}
 
-export CLASSPATH="`%{_bindir}/build-classpath $required_jars`"
+export CLASSPATH=$(build-classpath $required_jars)
 
 sh build.sh --noconfig main javadocs
 
