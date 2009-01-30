@@ -565,7 +565,8 @@ required_jars="jaxp_parser_impl"
 %{?with_jsch:required_jars="$required_jars jsch"}
 %{?with_netrexx:required_jars="$required_jars NetRexxC"}
 
-export CLASSPATH=$(build-classpath $required_jars)
+CLASSPATH=$(build-classpath $required_jars)
+export CLASSPATH
 
 sh build.sh --noconfig main javadocs
 
