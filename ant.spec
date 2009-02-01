@@ -568,7 +568,11 @@ required_jars="jaxp_parser_impl"
 CLASSPATH=$(build-classpath $required_jars)
 export CLASSPATH
 
+%if %{with bootstrap}
 sh build.sh --noconfig main javadocs
+%else
+%ant main javadocs
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
