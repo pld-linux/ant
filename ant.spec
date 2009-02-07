@@ -84,7 +84,7 @@ BuildRequires:	jpackage-utils
 %{?with_netrexx:BuildRequires:	netrexx}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-%{?with_apache_resolver:BuildRequires:	xml-commons-resolver}
+%{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
 Requires:	jdk
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
