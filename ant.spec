@@ -75,7 +75,7 @@ URL:		http://ant.apache.org/
 %{?with_javamail:BuildRequires:	javamail}
 BuildRequires:	jaxp_parser_impl
 %{?with_jdepend:BuildRequires:	jdepend}
-BuildRequires:	java-sun
+BuildRequires:	java-gcj-compat-devel
 BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch >= 0.1.21}
 %{?with_junit:BuildRequires:	junit}
@@ -568,10 +568,12 @@ required_jars="jaxp_parser_impl"
 CLASSPATH=$(build-classpath $required_jars)
 export CLASSPATH
 
+export SHELL=/bin/sh
+
 %if %{with bootstrap}
 sh build.sh --noconfig main javadocs
 %else
-%ant main javadocs
+%ant -Dbuild.compiler=extJavac main javadocs
 %endif
 
 %install
