@@ -89,7 +89,6 @@ Requires:	jdk
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
 BuildArch:	noarch
-ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define 	ant_home 	%{_datadir}/ant
