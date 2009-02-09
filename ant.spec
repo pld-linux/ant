@@ -72,10 +72,10 @@ URL:		http://ant.apache.org/
 %{?with_commons_net:BuildRequires:	jakarta-commons-net}
 %{?with_apache_oro:BuildRequires:	jakarta-oro}
 %{?with_apache_regexp:BuildRequires:	jakarta-regexp}
-%{?with_javamail:BuildRequires:	javamail}
-BuildRequires:	jaxp_parser_impl
-%{?with_jdepend:BuildRequires:	jdepend}
 BuildRequires:	java-gcj-compat-devel
+%{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
+%{?with_javamail:BuildRequires:	javamail}
+%{?with_jdepend:BuildRequires:	jdepend}
 BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch >= 0.1.21}
 %{?with_junit:BuildRequires:	junit}
@@ -84,7 +84,7 @@ BuildRequires:	jpackage-utils
 %{?with_netrexx:BuildRequires:	netrexx}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-%{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
+BuildRequires:	xerces-j
 Requires:	jdk
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
@@ -711,13 +711,13 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_javadir}/%{name}-launcher-%{version}.jar
 %dir %{_javadir}/%{name}
 %dir %{ant_home}
-%dir %{ant_home}/etc
-%{ant_home}/etc/ant-update.xsl
-%{ant_home}/etc/changelog.xsl
-%{ant_home}/etc/common2master.xsl
-%{ant_home}/etc/log.xsl
-%{ant_home}/etc/tagdiff.xsl
-%{ant_home}/etc/junit-frames-xalan1.xsl
+%dir %{ant_home}%{_sysconfdir}
+%{ant_home}%{_sysconfdir}/ant-update.xsl
+%{ant_home}%{_sysconfdir}/changelog.xsl
+%{ant_home}%{_sysconfdir}/common2master.xsl
+%{ant_home}%{_sysconfdir}/log.xsl
+%{ant_home}%{_sysconfdir}/tagdiff.xsl
+%{ant_home}%{_sysconfdir}/junit-frames-xalan1.xsl
 %dir %{ant_home}/lib
 %dir %{_sysconfdir}/%{name}.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
@@ -763,7 +763,7 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_javadir}/%{name}/%{name}-apache-oro-%{version}.jar
 %{_javadir}/%{name}/%{name}-jakarta-oro.jar
 %{_sysconfdir}/%{name}.d/apache-oro
-%{ant_home}/etc/maudit-frames.xsl
+%{ant_home}%{_sysconfdir}/maudit-frames.xsl
 %endif
 
 %if %{with apache_regexp}
@@ -821,8 +821,8 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_javadir}/%{name}/%{name}-jdepend.jar
 %{_javadir}/%{name}/%{name}-jdepend-%{version}.jar
 %{_sysconfdir}/%{name}.d/jdepend
-%{ant_home}/etc/jdepend.xsl
-%{ant_home}/etc/jdepend-frames.xsl
+%{ant_home}%{_sysconfdir}/jdepend.xsl
+%{ant_home}%{_sysconfdir}/jdepend-frames.xsl
 %endif
 
 %files jmf
@@ -845,8 +845,8 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_javadir}/%{name}/%{name}-junit.jar
 %{_javadir}/%{name}/%{name}-junit-%{version}.jar
 %{_sysconfdir}/%{name}.d/junit
-%{ant_home}/etc/junit-frames.xsl
-%{ant_home}/etc/junit-noframes.xsl
+%{ant_home}%{_sysconfdir}/junit-frames.xsl
+%{ant_home}%{_sysconfdir}/junit-noframes.xsl
 %endif
 
 %if %{with netrexx}
@@ -874,8 +874,8 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_javadir}/%{name}/%{name}-trax.jar
 %{_javadir}/%{name}/%{name}-trax-%{version}.jar
 %{_sysconfdir}/%{name}.d/trax
-%{ant_home}/etc/mmetrics-frames.xsl
-%{ant_home}/etc/coverage-frames.xsl
+%{ant_home}%{_sysconfdir}/mmetrics-frames.xsl
+%{ant_home}%{_sysconfdir}/coverage-frames.xsl
 
 %files scripts
 %defattr(644,root,root,755)
