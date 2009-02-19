@@ -85,7 +85,6 @@ BuildRequires:	jpackage-utils
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	xerces-j
-Requires:	jdk
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
 BuildArch:	noarch
