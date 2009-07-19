@@ -1,4 +1,5 @@
 # TODO
+# - review config files in /etc/ant.d. Something seems to be broken there.
 # - prepare all BR and test the full build
 #   TODO:
 #   - stylebook: http://svn.apache.org/viewcvs.cgi/xml/stylebook/
@@ -44,7 +45,7 @@
 %undefine	with_netrexx
 %endif
 #
-%define		_rel	4
+%define		_rel	5
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
@@ -68,10 +69,10 @@ URL:		http://ant.apache.org/
 %{?with_javamail:BuildRequires:	jaf}
 %{?with_jai:BuildRequires:	jai}
 %{?with_apache_bcel:BuildRequires:	jakarta-bcel}
-%{?with_commons_logging:BuildRequires:	jakarta-commons-logging}
-%{?with_commons_net:BuildRequires:	jakarta-commons-net}
-%{?with_apache_oro:BuildRequires:	jakarta-oro}
-%{?with_apache_regexp:BuildRequires:	jakarta-regexp}
+%{?with_commons_logging:BuildRequires:	java-commons-logging}
+%{?with_commons_net:BuildRequires:	java-commons-net}
+%{?with_apache_oro:BuildRequires:	java-oro}
+%{?with_apache_regexp:BuildRequires:	java-regexp}
 BuildRequires:	java-gcj-compat-devel
 %{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
 %{?with_javamail:BuildRequires:	javamail}
@@ -80,7 +81,7 @@ BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch >= 0.1.21}
 %{?with_junit:BuildRequires:	junit}
 %{?with_apache_bsf:BuildRequires:	jython}
-%{?with_apache_log4j:BuildRequires:	logging-log4j >= 1.2}
+%{?with_apache_log4j:BuildRequires:	java-log4j >= 1.2}
 %{?with_netrexx:BuildRequires:	netrexx}
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
@@ -174,7 +175,7 @@ Summary(fr.UTF-8):	Taches apache log4j optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania apache log4j dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	logging-log4j >= 1.2
+Requires:	java-log4j >= 1.2
 Provides:	ant-jakarta-log4j = %{version}-%{release}
 Obsoletes:	ant-jakarta-log4j
 Conflicts:	ant-optional-clean
@@ -195,7 +196,7 @@ Summary(fr.UTF-8):	Taches apache oro optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania apache oro dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jakarta-oro
+Requires:	java-oro
 Provides:	ant-jakarta-oro = %{version}-%{release}
 Obsoletes:	ant-jakarta-oro
 Conflicts:	ant-optional-clean
@@ -216,7 +217,7 @@ Summary(fr.UTF-8):	Taches apache regexp optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania apache regexp dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jakarta-regexp
+Requires:	java-regexp
 Obsoletes:	ant-jakarta-regexp
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
@@ -236,7 +237,7 @@ Summary(fr.UTF-8):	Taches apache resolver optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania apache resolver dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	xml-commons-resolver
+Requires:	java-xml-commons-resolver
 Provides:	ant-apache-resolver = %{version}-%{release}
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
@@ -272,7 +273,7 @@ Summary(fr.UTF-8):	Taches commons net optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania commons net dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jakarta-commons-net
+Requires:	java-commons-net
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -479,10 +480,10 @@ Summary:	Additional scripts for %{name}
 Summary(fr.UTF-8):	Scripts additionels pour %{name}
 Summary(pl.UTF-8):	Dodatkowe skrypty dla anta
 Group:		Development/Languages/Java
-AutoReqProv:	no
 Requires:	%{name} = %{version}-%{release}
 Requires:	/usr/bin/perl
 Requires:	/usr/bin/python
+AutoReqProv:	no
 
 %description scripts
 Additional Perl and Python scripts for %{name}.
