@@ -24,7 +24,13 @@
 %bcond_without	jsch		# disable building jsch optional task(s)
 %bcond_without	junit		# disable building junit optional task(s)
 %bcond_without	netrexx		# disable building netrexx optional taks(s)
-#
+
+%if "%{pld_release}" == "ti"
+%bcond_without	java_sun	# build with gcj
+%else
+%bcond_with	java_sun	# build with java-sun
+%endif
+
 %if %{without nonfree}
 %undefine	with_jai
 %endif
@@ -44,7 +50,9 @@
 %undefine	with_jsch
 %undefine	with_netrexx
 %endif
-#
+
+%include	/usr/lib/rpm/macros.java
+
 %define		_rel	5
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
@@ -63,6 +71,7 @@ Patch0:		%{name}-antRun.patch
 # next release of ant.
 Patch1:		%{name}-gcjtask.patch
 URL:		http://ant.apache.org/
+%{!?with_bootstrap:BuildRequires:	ant}
 %{?with_antlr:BuildRequires:	antlr}
 %{?with_apache_bsf:BuildRequires:	beanshell}
 %{?with_apache_bsf:BuildRequires:	bsf}
@@ -71,10 +80,12 @@ URL:		http://ant.apache.org/
 %{?with_apache_bcel:BuildRequires:	jakarta-bcel}
 %{?with_commons_logging:BuildRequires:	java-commons-logging}
 %{?with_commons_net:BuildRequires:	java-commons-net}
+%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
 %{?with_apache_oro:BuildRequires:	java-oro}
 %{?with_apache_regexp:BuildRequires:	java-regexp}
-BuildRequires:	java-gcj-compat-devel
 %{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
+%{?with_java_sun:BuildRequires:	java-sun}
+BuildRequires:	jpackage-utils
 %{?with_javamail:BuildRequires:	javamail}
 %{?with_jdepend:BuildRequires:	jdepend}
 BuildRequires:	jpackage-utils
@@ -83,6 +94,8 @@ BuildRequires:	jpackage-utils
 %{?with_apache_bsf:BuildRequires:	jython}
 %{?with_apache_log4j:BuildRequires:	java-log4j >= 1.2}
 %{?with_netrexx:BuildRequires:	netrexx}
+BuildRequires:	rpm >= 4.4.9-56
+BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRequires:	xerces-j
