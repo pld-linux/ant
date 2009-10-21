@@ -86,7 +86,7 @@ URL:		http://ant.apache.org/
 %{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
 %{?with_java_sun:BuildRequires:	java-sun}
 BuildRequires:	jpackage-utils
-%{?with_javamail:BuildRequires:	javamail}
+%{?with_javamail:BuildRequires:	java-mail}
 %{?with_jdepend:BuildRequires:	jdepend}
 BuildRequires:	jpackage-utils
 %{?with_jsch:BuildRequires:	jsch >= 0.1.21}
@@ -325,7 +325,7 @@ Summary(pl.UTF-8):	Opcjonalne zadania javamail dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
 Requires:	jaf
-Requires:	javamail >= 1.2
+Requires:	java-mail >= 1.2
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -572,7 +572,7 @@ required_jars="jaxp_parser_impl"
 %{?with_apache_log4j:required_jars="$required_jars log4j"}
 %{?with_apache_oro:required_jars="$required_jars oro"}
 %{?with_apache_regexp:required_jars="$required_jars regexp"}
-%{?with_javamail:required_jars="$required_jars mailapi activation"}
+%{?with_javamail:required_jars="$required_jars mail activation"}
 %{?with_jdepend:required_jars="$required_jars jdepend"}
 %{?with_jsch:required_jars="$required_jars jsch"}
 %{?with_netrexx:required_jars="$required_jars NetRexxC"}
@@ -678,7 +678,7 @@ ln -sf %{name}-apache-regexp.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-jaka
 
 %if %{with javamail}
 install build/lib/%{name}-javamail.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-javamail-%{version}.jar
-echo "javamail/mailapi jaf ant/ant-javamail" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/javamail
+echo "mail jaf ant/ant-javamail" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/javamail
 %endif
 
 %if %{with jdepend}
