@@ -53,13 +53,14 @@
 
 %include	/usr/lib/rpm/macros.java
 
+%define		_rel	5
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
 Summary(pl.UTF-8):	Ant - narzędzie do budowania w Javie
 Name:		ant
 Version:	1.7.1
-Release:	5%{?with_bootstrap:.bootstrap}
+Release:	%{_rel}%{?with_bootstrap:.bootstrap}
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
