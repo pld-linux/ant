@@ -75,8 +75,8 @@ URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{?with_apache_bsf:BuildRequires:	beanshell}
 %{?with_apache_bsf:BuildRequires:	bsf}
-%{?with_javamail:BuildRequires:	jaf}
-%{?with_jai:BuildRequires:	jai}
+%{?with_javamail:BuildRequires:	java(jaf)}
+%{?with_jai:BuildRequires:	java(jai)}
 %{?with_apache_bcel:BuildRequires:	jakarta-bcel}
 %{?with_commons_logging:BuildRequires:	java-commons-logging}
 %{?with_commons_net:BuildRequires:	java-commons-net}
