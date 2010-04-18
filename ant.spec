@@ -25,12 +25,6 @@
 %bcond_without	junit		# disable building junit optional task(s)
 %bcond_without	netrexx		# disable building netrexx optional taks(s)
 
-%if "%{pld_release}" == "ti"
-%bcond_without	java_sun	# build with gcj
-%else
-%bcond_with	java_sun	# build with java-sun
-%endif
-
 %if %{without nonfree}
 %undefine	with_jai
 %endif
@@ -53,7 +47,7 @@
 
 %include	/usr/lib/rpm/macros.java
 
-%define		_rel	5
+%define		_rel	6
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
@@ -73,32 +67,30 @@ Patch1:		%{name}-gcjtask.patch
 URL:		http://ant.apache.org/
 %{!?with_bootstrap:BuildRequires:	ant}
 %{?with_antlr:BuildRequires:	antlr}
-%{?with_apache_bsf:BuildRequires:	beanshell}
-%{?with_apache_bsf:BuildRequires:	bsf}
 %{?with_javamail:BuildRequires:	java(jaf)}
 %{?with_jai:BuildRequires:	java(jai)}
-%{?with_apache_bcel:BuildRequires:	jakarta-bcel}
+%{?with_javamail:BuildRequires:	java(mail)}
+%{?with_apache_bsf:BuildRequires:	java-beanshell}
+%{?with_apache_bcel:BuildRequires:	java-bcel}
+%{?with_apache_bsf:BuildRequires:	java-bsf}
 %{?with_commons_logging:BuildRequires:	java-commons-logging}
 %{?with_commons_net:BuildRequires:	java-commons-net}
-%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
+%{?with_jdepend:BuildRequires:	java-jdepend}
+%{?with_netrexx:BuildRequires:	java-netrexx}
 %{?with_apache_oro:BuildRequires:	java-oro}
 %{?with_apache_regexp:BuildRequires:	java-regexp}
+%{?with_jsch:BuildRequires:	java-jsch >= 0.1.21}
+BuildRequires:	java-xerces
 %{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
-%{?with_java_sun:BuildRequires:	java-sun}
+BuildRequires:	jdk
 BuildRequires:	jpackage-utils
-%{?with_javamail:BuildRequires:	java-mail}
-%{?with_jdepend:BuildRequires:	jdepend}
-BuildRequires:	jpackage-utils
-%{?with_jsch:BuildRequires:	jsch >= 0.1.21}
 %{?with_junit:BuildRequires:	junit}
 %{?with_apache_bsf:BuildRequires:	jython}
 %{?with_apache_log4j:BuildRequires:	java-log4j >= 1.2}
-%{?with_netrexx:BuildRequires:	netrexx}
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
-BuildRequires:	xerces-j
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
 BuildArch:	noarch
@@ -324,8 +316,8 @@ Summary(fr.UTF-8):	Taches javamail optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania javamail dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jaf
-Requires:	java-mail >= 1.2
+Requires:	java(jaf)
+Requires:	java(javamail) >= 1.2
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
