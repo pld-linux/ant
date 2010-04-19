@@ -74,7 +74,7 @@ URL:		http://ant.apache.org/
 %{?with_apache_bcel:BuildRequires:	java-bcel}
 %{?with_apache_bsf:BuildRequires:	java-bsf}
 %{?with_commons_logging:BuildRequires:	java-commons-logging}
-%{?with_commons_net:BuildRequires:	java-commons-net}
+%{?with_commons_net:BuildRequires:	java-commons-net1}
 %{?with_jdepend:BuildRequires:	java-jdepend}
 %{?with_netrexx:BuildRequires:	java-netrexx}
 %{?with_apache_oro:BuildRequires:	java-oro}
@@ -278,7 +278,7 @@ Summary(fr.UTF-8):	Taches commons net optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania commons net dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	java-commons-net
+Requires:	java-commons-net1
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -558,7 +558,7 @@ required_jars="jaxp_parser_impl"
 %{?with_apache_bsf:required_jars="$required_jars bsf jython bsh"}
 %{?with_apache_resolver:required_jars="$required_jars resolver"}
 %{?with_commons_logging:required_jars="$required_jars commons-logging"}
-%{?with_commons_net:required_jars="$required_jars commons-net"}
+%{?with_commons_net:required_jars="$required_jars commons-net1"}
 %{?with_jai:required_jars="$required_jars jai_core jai_codec"}
 %{?with_apache_bcel:required_jars="$required_jars bcel"}
 %{?with_apache_log4j:required_jars="$required_jars log4j"}
@@ -634,7 +634,7 @@ echo "commons-logging ant/ant-commons-logging" > $RPM_BUILD_ROOT%{_sysconfdir}/%
 
 %if %{with commons_net}
 install build/lib/%{name}-commons-net.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-commons-net-%{version}.jar
-echo "commons-net ant/ant-commons-net" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/commons-net
+echo "commons-net1 ant/ant-commons-net" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/commons-net
 %endif
 
 %if %{with jai}
