@@ -47,7 +47,7 @@
 
 %include	/usr/lib/rpm/macros.java
 
-%define		_rel	6
+%define		_rel	7
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
@@ -69,7 +69,7 @@ URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{?with_javamail:BuildRequires:	java(jaf)}
 %{?with_jai:BuildRequires:	java(jai)}
-%{?with_javamail:BuildRequires:	java(mail)}
+%{?with_javamail:BuildRequires:	java(javamail)}
 %{?with_apache_bsf:BuildRequires:	java-beanshell}
 %{?with_apache_bcel:BuildRequires:	java-bcel}
 %{?with_apache_bsf:BuildRequires:	java-bsf}
