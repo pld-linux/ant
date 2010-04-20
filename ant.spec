@@ -47,7 +47,7 @@
 
 %include	/usr/lib/rpm/macros.java
 
-%define		_rel	8
+%define		_rel	9
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
@@ -84,7 +84,7 @@ BuildRequires:	java-xerces
 %{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
 BuildRequires:	jdk
 BuildRequires:	jpackage-utils
-%{?with_junit:BuildRequires:	junit}
+%{?with_junit:BuildRequires:	java-junit}
 %{?with_apache_bsf:BuildRequires:	jython}
 %{?with_apache_log4j:BuildRequires:	java-log4j >= 1.2}
 BuildRequires:	rpm >= 4.4.9-56
@@ -392,7 +392,7 @@ Summary(fr.UTF-8):	Taches junit optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania junit dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	junit
+Requires:	java-junit
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
