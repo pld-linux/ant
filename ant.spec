@@ -161,7 +161,7 @@ Summary(fr.UTF-8):	Taches apache bsf optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania apache bsf dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	bsf
+Requires:	java-bsf
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -336,7 +336,7 @@ Summary(fr.UTF-8):	Taches jdepend optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania jdepend dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jdepend
+Requires:	java-jdepend
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -373,7 +373,7 @@ Summary(fr.UTF-8):	Taches jsch optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania jsch dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jsch >= 0.1.21
+Requires:	java-jsch
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
