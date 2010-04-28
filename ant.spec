@@ -65,28 +65,28 @@ Patch0:		%{name}-antRun.patch
 # next release of ant.
 Patch1:		%{name}-gcjtask.patch
 URL:		http://ant.apache.org/
-%{!?with_bootstrap:BuildRequires:	ant}
 %{?with_antlr:BuildRequires:	antlr}
+%{!?with_bootstrap:BuildRequires:	ant}
 %{?with_javamail:BuildRequires:	java(jaf)}
 %{?with_jai:BuildRequires:	java(jai)}
 %{?with_javamail:BuildRequires:	java(javamail)}
-%{?with_apache_bsf:BuildRequires:	java-beanshell}
 %{?with_apache_bcel:BuildRequires:	java-bcel}
+%{?with_apache_bsf:BuildRequires:	java-beanshell}
 %{?with_apache_bsf:BuildRequires:	java-bsf}
 %{?with_commons_logging:BuildRequires:	java-commons-logging}
 %{?with_commons_net:BuildRequires:	java-commons-net1}
 %{?with_jdepend:BuildRequires:	java-jdepend}
+%{?with_jsch:BuildRequires:	java-jsch >= 0.1.21}
+%{?with_junit:BuildRequires:	java-junit}
+%{?with_apache_log4j:BuildRequires:	java-log4j >= 1.2}
 %{?with_netrexx:BuildRequires:	java-netrexx}
 %{?with_apache_oro:BuildRequires:	java-oro}
 %{?with_apache_regexp:BuildRequires:	java-regexp}
-%{?with_jsch:BuildRequires:	java-jsch >= 0.1.21}
 BuildRequires:	java-xerces
 %{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
 BuildRequires:	jdk
 BuildRequires:	jpackage-utils
-%{?with_junit:BuildRequires:	java-junit}
 %{?with_apache_bsf:BuildRequires:	jython}
-%{?with_apache_log4j:BuildRequires:	java-log4j >= 1.2}
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
@@ -465,7 +465,7 @@ Summary(fr.UTF-8):	Taches trax optionelles pour %{name}
 Summary(pl.UTF-8):	Dodatkowe zadania trax dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jaxp_transform_impl
+Requires:	java(jaxp_transform_impl)
 # The ant-xalan jar has been merged into the ant-trax one
 Obsoletes:	ant-xalan2
 Conflicts:	ant-optional-clean
