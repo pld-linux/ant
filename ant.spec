@@ -47,7 +47,7 @@
 
 %include	/usr/lib/rpm/macros.java
 
-%define		_rel	10
+%define		_rel	11
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
@@ -140,7 +140,7 @@ Summary(fr.UTF-8):	Taches apache bcel optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania apache bcel dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jakarta-bcel
+Requires:	java-bcel
 Provides:	ant-jakarta-bcel = %{version}-%{release}
 Obsoletes:	ant-jakarta-bcel
 Conflicts:	ant-optional-clean
@@ -259,7 +259,7 @@ Summary(fr.UTF-8):	Taches commons logging optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania commons logging dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	jakarta-commons-logging
+Requires:	java-commons-logging
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
