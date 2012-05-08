@@ -45,16 +45,15 @@
 %undefine	with_netrexx
 %endif
 
+%define		rel	11
 %include	/usr/lib/rpm/macros.java
-
-%define		_rel	11
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
 Summary(pl.UTF-8):	Ant - narzędzie do budowania w Javie
 Name:		ant
 Version:	1.7.1
-Release:	%{bootstrap_release %_rel}
+Release:	%{bootstrap_release %rel}
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
@@ -64,6 +63,7 @@ Patch0:		%{name}-antRun.patch
 # patch1 has been applied to ant sources in svn. It won't be needed for the
 # next release of ant.
 Patch1:		%{name}-gcjtask.patch
+Patch2:		no-resourcecount.patch
 URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{!?with_bootstrap:BuildRequires:	ant}
@@ -538,6 +538,7 @@ jakarta i xml.
 %setup -q -n apache-%{name}-%{version}
 %patch0 -p1
 %patch1 -p1
+%{?with_bootstrap:%patch2 -p1}
 
 # clean jar files
 find . -name "*.jar" -exec rm -f {} \;
