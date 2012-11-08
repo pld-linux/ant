@@ -45,24 +45,22 @@
 %undefine	with_netrexx
 %endif
 
-%define		rel	11
+%define		rel	1
 %include	/usr/lib/rpm/macros.java
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
 Summary(pl.UTF-8):	Ant - narzędzie do budowania w Javie
 Name:		ant
-Version:	1.7.1
+Version:	1.8.4
 Release:	%{bootstrap_release %rel}
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
-# Source0-md5:	0d68db4a1ada5c91bcbf53cefd0c2fd7
+# Source0-md5:	c474fa9d0c35a24037c23b6e476862c1
 Source1:	%{name}.conf
 Patch0:		%{name}-antRun.patch
-# patch1 has been applied to ant sources in svn. It won't be needed for the
-# next release of ant.
-Patch1:		%{name}-gcjtask.patch
+
 Patch2:		no-resourcecount.patch
 URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
@@ -93,6 +91,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
+Obsoletes:	ant-nodeps
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -423,24 +422,6 @@ Taches netrexx optionelles pour %{name}.
 %description netrexx -l pl.UTF-8
 Opcjonalne zadania netrexx dla anta.
 
-%package nodeps
-Summary:	Optional tasks for %{name}
-Summary(fr.UTF-8):	Taches optionelles pour %{name}
-Summary(pl.UTF-8):	Opcjonalne zadania dla anta
-Group:		Development/Languages/Java
-Requires:	%{name} = %{version}-%{release}
-Conflicts:	ant-optional-clean
-Conflicts:	ant-optional-full
-
-%description nodeps
-Optional tasks for %{name}.
-
-%description nodeps -l fr.UTF-8
-Taches optionelles pour %{name}.
-
-%description nodeps -l pl.UTF-8
-Opcjonalne zadania dla anta.
-
 %package swing
 Summary:	Optional swing tasks for %{name}
 Summary(fr.UTF-8):	Taches swing optionelles pour %{name}
@@ -458,27 +439,6 @@ Taches swing optionelles pour %{name}.
 
 %description swing -l pl.UTF-8
 Opcjonalne zadania swing dla anta.
-
-%package trax
-Summary:	Optional trax tasks for %{name}
-Summary(fr.UTF-8):	Taches trax optionelles pour %{name}
-Summary(pl.UTF-8):	Dodatkowe zadania trax dla anta
-Group:		Development/Languages/Java
-Requires:	%{name} = %{version}-%{release}
-Requires:	java(jaxp_transform_impl)
-# The ant-xalan jar has been merged into the ant-trax one
-Obsoletes:	ant-xalan2
-Conflicts:	ant-optional-clean
-Conflicts:	ant-optional-full
-
-%description trax
-Optional trax tasks for %{name}.
-
-%description trax -l fr.UTF-8
-Taches trax optionelles pour %{name}.
-
-%description trax -l pl.UTF-8
-Dodatkowe zadania trax dla anta.
 
 %package scripts
 Summary:	Additional scripts for %{name}
@@ -537,7 +497,7 @@ jakarta i xml.
 %prep
 %setup -q -n apache-%{name}-%{version}
 %patch0 -p1
-%patch1 -p1
+
 %{?with_bootstrap:%patch2 -p1}
 
 # clean jar files
@@ -547,8 +507,8 @@ sed -i -e 's|@BINDIR@|%{_bindir}|g' \
 	src/main/org/apache/tools/ant/taskdefs/Exec.java \
 	src/main/org/apache/tools/ant/taskdefs/Execute.java
 
-# fix link between manual and javadoc
-ln -sf %{_javadocdir}/%{name}-%{version} docs/manual/api
+# avoid building test-jar
+sed -i -e 's#depends="jars,test-jar"#depends="jars"#g' build.xml
 
 %build
 export JAVA_HOME="%{java_home}"
@@ -597,14 +557,10 @@ install dist/lib/%{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
 install dist/lib/%{name}-launcher.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-launcher-%{version}.jar
 
 # optional jars
-install build/lib/%{name}-nodeps.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-nodeps-%{version}.jar
-install build/lib/%{name}-trax.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-trax-%{version}.jar
 install build/lib/%{name}-jmf.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-jmf-%{version}.jar
 install build/lib/%{name}-swing.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-swing-%{version}.jar
 echo "ant/ant-jmf" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/jmf
-echo "ant/ant-nodeps" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/nodeps
 echo "ant/ant-swing" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/swing
-echo "jaxp_transform_impl ant/ant-trax" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/trax
 
 %if %{with junit}
 install build/lib/%{name}-junit.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-junit-%{version}.jar
@@ -721,9 +677,12 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{ant_home}%{_sysconfdir}/ant-update.xsl
 %{ant_home}%{_sysconfdir}/changelog.xsl
 %{ant_home}%{_sysconfdir}/common2master.xsl
+%{ant_home}%{_sysconfdir}/coverage-frames.xsl
 %{ant_home}%{_sysconfdir}/log.xsl
+%{ant_home}%{_sysconfdir}/mmetrics-frames.xsl
 %{ant_home}%{_sysconfdir}/tagdiff.xsl
 %{ant_home}%{_sysconfdir}/junit-frames-xalan1.xsl
+%{ant_home}%{_sysconfdir}/printFailingTests.xsl
 %dir %{ant_home}/lib
 %dir %{_sysconfdir}/%{name}.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
@@ -863,25 +822,11 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_sysconfdir}/%{name}.d/netrexx
 %endif
 
-%files nodeps
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-nodeps.jar
-%{_javadir}/%{name}/%{name}-nodeps-%{version}.jar
-%{_sysconfdir}/%{name}.d/nodeps
-
 %files swing
 %defattr(644,root,root,755)
 %{_javadir}/%{name}/%{name}-swing.jar
 %{_javadir}/%{name}/%{name}-swing-%{version}.jar
 %{_sysconfdir}/%{name}.d/swing
-
-%files trax
-%defattr(644,root,root,755)
-%{_javadir}/%{name}/%{name}-trax.jar
-%{_javadir}/%{name}/%{name}-trax-%{version}.jar
-%{_sysconfdir}/%{name}.d/trax
-%{ant_home}%{_sysconfdir}/mmetrics-frames.xsl
-%{ant_home}%{_sysconfdir}/coverage-frames.xsl
 
 %files scripts
 %defattr(644,root,root,755)
@@ -890,7 +835,7 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 
 %files doc
 %defattr(644,root,root,755)
-%doc docs/*
+%doc manual/*
 
 %files javadoc
 %defattr(644,root,root,755)
