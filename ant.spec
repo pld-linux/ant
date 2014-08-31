@@ -52,12 +52,12 @@ Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
 Summary(pl.UTF-8):	Ant - narzędzie do budowania w Javie
 Name:		ant
-Version:	1.9.3
+Version:	1.9.4
 Release:	%{bootstrap_release %rel}
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
-# Source0-md5:	995f21618acdf35beacc465c84d79534
+# Source0-md5:	7a7253ec047195d755c5318a4de8a3a4
 Source1:	%{name}.conf
 Patch0:		%{name}-antRun.patch
 
@@ -89,6 +89,8 @@ BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+Requires:	java(jaxp_parser_impl)
+Requires:	java(xml-commons-apis)
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
 Obsoletes:	ant-nodeps
