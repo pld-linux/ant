@@ -532,8 +532,7 @@ required_jars="jaxp_parser_impl"
 %{?with_jsch:required_jars="$required_jars jsch"}
 %{?with_netrexx:required_jars="$required_jars NetRexxC"}
 
-CLASSPATH=$(build-classpath $required_jars)
-export CLASSPATH
+build-jar-repository lib/optional $required_jars
 
 export SHELL=/bin/sh
 
