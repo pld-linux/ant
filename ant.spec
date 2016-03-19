@@ -45,7 +45,7 @@
 %undefine	with_netrexx
 %endif
 
-%define		rel	1
+%define		rel	2
 %include	/usr/lib/rpm/macros.java
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
@@ -566,6 +566,8 @@ echo "ant/ant-swing" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/swing
 %if %{with junit}
 install build/lib/%{name}-junit.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-junit-%{version}.jar
 echo "junit ant/ant-junit" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/junit
+install build/lib/%{name}-junit4.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-junit4-%{version}.jar
+echo "junit ant/ant-junit4" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/junit4
 %else
 rm $RPM_BUILD_ROOT%{ant_home}%{_sysconfdir}/junit-{no,}frames.xml
 %endif
@@ -810,7 +812,10 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %defattr(644,root,root,755)
 %{_javadir}/%{name}/%{name}-junit.jar
 %{_javadir}/%{name}/%{name}-junit-%{version}.jar
+%{_javadir}/%{name}/%{name}-junit4.jar
+%{_javadir}/%{name}/%{name}-junit4-%{version}.jar
 %{_sysconfdir}/%{name}.d/junit
+%{_sysconfdir}/%{name}.d/junit4
 %{ant_home}%{_sysconfdir}/junit-frames.xsl
 %{ant_home}%{_sysconfdir}/junit-noframes.xsl
 %endif
