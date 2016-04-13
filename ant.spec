@@ -45,19 +45,19 @@
 %undefine	with_netrexx
 %endif
 
-%define		rel	2
+%define		rel	1
 %include	/usr/lib/rpm/macros.java
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
 Summary(pl.UTF-8):	Ant - narzędzie do budowania w Javie
 Name:		ant
-Version:	1.9.6
+Version:	1.9.7
 Release:	%{bootstrap_release %rel}
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
-# Source0-md5:	a2d6094af9d1b59b49378b61b2874a22
+# Source0-md5:	6413ed1cee16372d0fa215ffacca48b7
 Source1:	%{name}.conf
 Patch0:		%{name}-antRun.patch
 
