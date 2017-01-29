@@ -64,7 +64,7 @@ Patch0:		%{name}-antRun.patch
 Patch2:		no-resourcecount.patch
 URL:		http://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
-%{!?with_bootstrap:BuildRequires:	ant}
+%{!?with_bootstrap:BuildRequires:	ant >= 1.10.0}
 %{?with_javamail:BuildRequires:	java(jaf)}
 %{?with_jai:BuildRequires:	java(jai)}
 %{?with_javamail:BuildRequires:	java(javamail)}
