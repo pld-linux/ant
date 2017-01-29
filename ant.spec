@@ -45,7 +45,7 @@
 %undefine	with_netrexx
 %endif
 
-%define		rel	0.1
+%define		rel	1
 %include	/usr/lib/rpm/macros.java
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
