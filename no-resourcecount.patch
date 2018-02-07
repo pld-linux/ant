@@ -12,8 +12,8 @@ Can also be used as a condition. Since Apache Ant 1.7
 +		  <!--
          <resourcecount count="1">
            <intersect>
-             <path path="${java.class.path}" />
-             <file file="${build.tests}" />
+             <path path="${java.class.path}"/>
+             <file file="${build.tests}"/>
            </intersect>
          </resourcecount>
 +		-->
