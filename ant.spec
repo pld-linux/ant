@@ -537,7 +537,7 @@ build-jar-repository lib/optional $required_jars
 export SHELL=/bin/sh
 
 %if %{with bootstrap}
-sh build.sh --noconfig main javadocs
+sh build.sh --noconfig main
 %else
 %ant -Dbuild.compiler=extJavac main javadocs
 %endif
@@ -655,9 +655,11 @@ echo "netrexx ant/ant-netrexx" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/netrexx
 (cd $RPM_BUILD_ROOT%{_javadir}/%{name} && for jar in *-%{version}.jar; do ln -sf ${jar} `echo $jar| sed "s|-%{version}||g"`; done)
 
 # javadoc
+%if %{without bootstrap}
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 cp -pr build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -843,7 +845,9 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %defattr(644,root,root,755)
 %doc manual/*
 
+%if %{without bootstrap}
 %files javadoc
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}-%{version}
 %ghost %{_javadocdir}/%{name}
+%endif
