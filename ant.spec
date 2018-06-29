@@ -94,6 +94,7 @@ Requires:	java(xml-commons-apis)
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant
 Obsoletes:	ant-nodeps
+Obsoletes:	ant-trax
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
