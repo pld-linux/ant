@@ -8,22 +8,23 @@
 #
 # Conditional build:
 %bcond_with	bootstrap	# minimal build for bootstrap
-%bcond_with	nonfree		# build tasks with non-distributable dependencies
-%bcond_without	antlr		# disable building antlr optional task(s)
-%bcond_without	apache_bcel	# disable building apache-bcel optional task(s)
-%bcond_without	apache_bsf	# disable building apache-bsf optional task(s)
-%bcond_without	apache_log4j	# disable building log4j optional task(s)
-%bcond_without	apache_oro	# disable building apache-oro optional task(s)
-%bcond_without	apache_regexp	# disable building apache-regexp optional task(s)
-%bcond_without	apache_resolver	# disable building apache-resolver optional task(s)
-%bcond_without	commons_logging	# disable building commons-logging optional task(s)
-%bcond_without	commons_net	# disable building commons-net optional task(s)
-%bcond_without	jai		# disable building jai optional task(s)
-%bcond_without	javamail	# disable building javamail optional task(s)
-%bcond_without	jdepend		# disable building jdepend optional task(s)
-%bcond_without	jsch		# disable building jsch optional task(s)
-%bcond_without	junit		# disable building junit optional task(s)
-%bcond_without	netrexx		# disable building netrexx optional taks(s)
+%bcond_with	nonfree		# tasks with non-distributable dependencies
+%bcond_without	javadoc		# Javadoc documentation
+%bcond_without	antlr		# antlr optional task(s)
+%bcond_without	apache_bcel	# apache-bcel optional task(s)
+%bcond_without	apache_bsf	# apache-bsf optional task(s)
+%bcond_without	apache_log4j	# log4j optional task(s)
+%bcond_without	apache_oro	# apache-oro optional task(s)
+%bcond_without	apache_regexp	# apache-regexp optional task(s)
+%bcond_without	apache_resolver	# apache-resolver optional task(s)
+%bcond_without	commons_logging	# commons-logging optional task(s)
+%bcond_without	commons_net	# commons-net optional task(s)
+%bcond_without	jai		# jai optional task(s)
+%bcond_without	javamail	# javamail optional task(s)
+%bcond_without	jdepend		# jdepend optional task(s)
+%bcond_without	jsch		# jsch optional task(s)
+%bcond_without	junit		# junit optional task(s)
+%bcond_without	netrexx		# netrexx optional taks(s)
 
 %if %{without nonfree}
 %undefine	with_jai
@@ -43,6 +44,7 @@
 %undefine	with_jdepend
 %undefine	with_jsch
 %undefine	with_netrexx
+%undefine	with_javadoc
 %endif
 
 %define		rel	1
@@ -55,13 +57,13 @@ Version:	1.10.5
 Release:	%{bootstrap_release %rel}
 License:	Apache
 Group:		Development/Languages/Java
-Source0:	http://www.apache.org/dist/ant/source/apache-%{name}-%{version}-src.tar.bz2
+Source0:	https://downloads.apache.org/ant/source/apache-%{name}-%{version}-src.tar.bz2
 # Source0-md5:	ed037a89a14cea8ff7c7cae1d052cf67
 Source1:	%{name}.conf
 Patch0:		%{name}-antRun.patch
 
 Patch2:		no-resourcecount.patch
-URL:		http://ant.apache.org/
+URL:		https://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{!?with_bootstrap:BuildRequires:	ant >= 1.10.0}
 %{?with_javamail:BuildRequires:	java(jaf)}
@@ -91,9 +93,9 @@ BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	java(jaxp_parser_impl)
 Requires:	java(xml-commons-apis)
 Requires:	jpackage-utils
-Obsoletes:	jakarta-ant
-Obsoletes:	ant-nodeps
-Obsoletes:	ant-trax
+Obsoletes:	jakarta-ant < 1.6.5-2
+Obsoletes:	ant-nodeps < 1.8
+Obsoletes:	ant-trax < 1.8
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -485,7 +487,7 @@ Summary:	Online manual for ant
 Summary(pl.UTF-8):	Dokumentacja online do ant
 Group:		Documentation
 Requires:	jpackage-utils
-Obsoletes:	jakarta-ant-doc
+Obsoletes:	jakarta-ant-doc < 1.6.5-2
 
 %description javadoc
 Documentation for ant, platform-independent build tool for Java. Used
@@ -505,12 +507,15 @@ jakarta i xml.
 # clean jar files
 find . -name "*.jar" -exec rm -f {} \;
 
-sed -i -e 's|@BINDIR@|%{_bindir}|g' \
+%{__sed} -i -e 's|@BINDIR@|%{_bindir}|g' \
 	src/main/org/apache/tools/ant/taskdefs/Exec.java \
 	src/main/org/apache/tools/ant/taskdefs/Execute.java
 
+# python2 script
+%{__sed} -i -e '1s,/usr/bin/python,%{__python},' src/script/runant.py
+
 # avoid building test-jar
-sed -i -e 's#depends="jars,test-jar"#depends="jars"#g' build.xml
+%{__sed} -i -e 's#depends="jars,test-jar"#depends="jars"#g' build.xml
 
 %build
 export JAVA_HOME="%{java_home}"
@@ -539,7 +544,7 @@ export SHELL=/bin/sh
 %if %{with bootstrap}
 sh build.sh --noconfig main
 %else
-%ant -Dbuild.compiler=extJavac main javadocs
+%ant -Dbuild.compiler=extJavac main %{?with_javadoc:javadocs}
 %endif
 
 %install
@@ -551,7 +556,7 @@ install dist/bin/{ant,antRun,runant.pl,runant.py} $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.conf
 
 # XSLs
-cp -p src%{_sysconfdir}/*.xsl $RPM_BUILD_ROOT%{ant_home}%{_sysconfdir}
+cp -p src/etc/*.xsl $RPM_BUILD_ROOT%{ant_home}/etc
 
 # base jars
 install dist/lib/%{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
@@ -569,7 +574,7 @@ echo "junit ant/ant-junit" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/junit
 install build/lib/%{name}-junit4.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-junit4-%{version}.jar
 echo "junit ant/ant-junit4" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/junit4
 %else
-rm $RPM_BUILD_ROOT%{ant_home}%{_sysconfdir}/junit-{no,}frames.xml
+%{__rm} $RPM_BUILD_ROOT%{ant_home}/etc/junit-{no,}frames.xml
 %endif
 
 %if %{with antlr}
@@ -619,7 +624,7 @@ install build/lib/%{name}-apache-oro.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{na
 ln -sf %{name}-apache-oro.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-jakarta-oro.jar
 echo "oro ant/ant-apache-oro" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/apache-oro
 %else
-rm $RPM_BUILD_ROOT%{ant_home}%{_sysconfdir}/maudit-frames.xsl
+rm $RPM_BUILD_ROOT%{ant_home}/etc/maudit-frames.xsl
 %endif
 
 %if %{with apache_regexp}
@@ -637,7 +642,7 @@ echo "mail jaf ant/ant-javamail" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/javam
 install build/lib/%{name}-jdepend.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-jdepend-%{version}.jar
 echo "jdepend ant/ant-jdepend" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/jdepend
 %else
-rm $RPM_BUILD_ROOT%{ant_home}%{_sysconfdir}/jdepend*
+rm $RPM_BUILD_ROOT%{ant_home}/etc/jdepend*
 %endif
 
 %if %{with jsch}
@@ -655,7 +660,7 @@ echo "netrexx ant/ant-netrexx" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/netrexx
 (cd $RPM_BUILD_ROOT%{_javadir}/%{name} && for jar in *-%{version}.jar; do ln -sf ${jar} `echo $jar| sed "s|-%{version}||g"`; done)
 
 # javadoc
-%if %{without bootstrap}
+%if %{with javadoc}
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 cp -pr build/javadocs/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name} # ghost symlink
@@ -678,16 +683,15 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_javadir}/%{name}-launcher-%{version}.jar
 %dir %{_javadir}/%{name}
 %dir %{ant_home}
-%dir %{ant_home}%{_sysconfdir}
-%{ant_home}%{_sysconfdir}/ant-update.xsl
-%{ant_home}%{_sysconfdir}/changelog.xsl
-%{ant_home}%{_sysconfdir}/common2master.xsl
-%{ant_home}%{_sysconfdir}/coverage-frames.xsl
-%{ant_home}%{_sysconfdir}/log.xsl
-%{ant_home}%{_sysconfdir}/mmetrics-frames.xsl
-%{ant_home}%{_sysconfdir}/tagdiff.xsl
-%{ant_home}%{_sysconfdir}/junit-frames-xalan1.xsl
-%{ant_home}%{_sysconfdir}/printFailingTests.xsl
+%dir %{ant_home}/etc
+%{ant_home}/etc/ant-update.xsl
+%{ant_home}/etc/changelog.xsl
+%{ant_home}/etc/common2master.xsl
+%{ant_home}/etc/coverage-frames.xsl
+%{ant_home}/etc/log.xsl
+%{ant_home}/etc/mmetrics-frames.xsl
+%{ant_home}/etc/tagdiff.xsl
+%{ant_home}/etc/printFailingTests.xsl
 %dir %{ant_home}/lib
 %dir %{_sysconfdir}/%{name}.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
@@ -733,7 +737,7 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_javadir}/%{name}/%{name}-apache-oro-%{version}.jar
 %{_javadir}/%{name}/%{name}-jakarta-oro.jar
 %{_sysconfdir}/%{name}.d/apache-oro
-%{ant_home}%{_sysconfdir}/maudit-frames.xsl
+%{ant_home}/etc/maudit-frames.xsl
 %endif
 
 %if %{with apache_regexp}
@@ -791,8 +795,8 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_javadir}/%{name}/%{name}-jdepend.jar
 %{_javadir}/%{name}/%{name}-jdepend-%{version}.jar
 %{_sysconfdir}/%{name}.d/jdepend
-%{ant_home}%{_sysconfdir}/jdepend.xsl
-%{ant_home}%{_sysconfdir}/jdepend-frames.xsl
+%{ant_home}/etc/jdepend.xsl
+%{ant_home}/etc/jdepend-frames.xsl
 %endif
 
 %files jmf
@@ -818,8 +822,11 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %{_javadir}/%{name}/%{name}-junit4-%{version}.jar
 %{_sysconfdir}/%{name}.d/junit
 %{_sysconfdir}/%{name}.d/junit4
-%{ant_home}%{_sysconfdir}/junit-frames.xsl
-%{ant_home}%{_sysconfdir}/junit-noframes.xsl
+%{ant_home}/etc/junit-frames.xsl
+%{ant_home}/etc/junit-frames-saxon.xsl
+%{ant_home}/etc/junit-frames-xalan1.xsl
+%{ant_home}/etc/junit-noframes.xsl
+%{ant_home}/etc/junit-noframes-saxon.xsl
 %endif
 
 %if %{with netrexx}
@@ -845,7 +852,7 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %defattr(644,root,root,755)
 %doc manual/*
 
-%if %{without bootstrap}
+%if %{with javadoc}
 %files javadoc
 %defattr(644,root,root,755)
 %{_javadocdir}/%{name}-%{version}
