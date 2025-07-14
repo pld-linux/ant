@@ -500,7 +500,7 @@ jakarta i xml.
 
 %prep
 %setup -q -n apache-%{name}-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %{?with_bootstrap:%patch2 -p1}
 
