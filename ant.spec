@@ -47,7 +47,7 @@
 %undefine	with_javadoc
 %endif
 
-%define		rel	1
+%define		rel	2
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
