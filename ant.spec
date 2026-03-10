@@ -53,12 +53,12 @@ Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
 Summary(pl.UTF-8):	Ant - narzędzie do budowania w Javie
 Name:		ant
-Version:	1.10.5
-Release:	%{bootstrap_release %rel}
+Version:	1.10.15
+Release:	%{bootstrap_release 1}
 License:	Apache
 Group:		Development/Languages/Java
 Source0:	https://downloads.apache.org/ant/source/apache-%{name}-%{version}-src.tar.bz2
-# Source0-md5:	ed037a89a14cea8ff7c7cae1d052cf67
+# Source0-md5:	9e54848c9d3283c9c329be734f1ac36f
 Source1:	%{name}.conf
 Patch0:		%{name}-antRun.patch
 
@@ -502,7 +502,7 @@ jakarta i xml.
 %setup -q -n apache-%{name}-%{version}
 %patch -P0 -p1
 
-%{?with_bootstrap:%patch2 -p1}
+%{?with_bootstrap:%patch -P2 -p1}
 
 # clean jar files
 find . -name "*.jar" -exec rm -f {} \;
@@ -515,7 +515,7 @@ find . -name "*.jar" -exec rm -f {} \;
 %{__sed} -i -e '1s,/usr/bin/python,%{__python},' src/script/runant.py
 
 # avoid building test-jar
-%{__sed} -i -e 's#depends="jars,test-jar"#depends="jars"#g' build.xml
+%{__sed} -i -e 's#,test-jar,#,#g' build.xml
 
 %build
 export JAVA_HOME="%{java_home}"
