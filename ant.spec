@@ -576,7 +576,7 @@ echo "junit ant/ant-junit" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/junit
 install build/lib/%{name}-junit4.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-junit4-%{version}.jar
 echo "junit ant/ant-junit4" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/junit4
 %else
-%{__rm} $RPM_BUILD_ROOT%{ant_home}/etc/junit-{no,}frames.xml
+%{__rm} $RPM_BUILD_ROOT%{ant_home}/etc/junit-{no,}frames*.xsl
 %endif
 
 %if %{with antlr}
