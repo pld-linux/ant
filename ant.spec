@@ -45,6 +45,7 @@
 %undefine	with_jsch
 %undefine	with_netrexx
 %undefine	with_javadoc
+%undefine	with_junit
 %endif
 
 %{?use_default_jdk}
