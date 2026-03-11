@@ -83,7 +83,7 @@ URL:		https://ant.apache.org/
 %{?with_netrexx:BuildRequires:	java-netrexx}
 %{?with_apache_oro:BuildRequires:	java-oro}
 %{?with_apache_regexp:BuildRequires:	java-regexp}
-BuildRequires:	java-xerces
+%{?with_apache_resolver:BuildRequires:	java-xerces}
 %{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
 %buildrequires_jdk
 BuildRequires:	jpackage-utils
@@ -92,7 +92,6 @@ BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.021
-Requires:	java(jaxp_parser_impl)
 Requires:	java(xml-commons-apis)
 Requires:	jpackage-utils
 Obsoletes:	jakarta-ant < 1.6.5-2
@@ -522,7 +521,6 @@ find . -name "*.jar" -exec rm -f {} \;
 %build
 export JAVA_HOME="%{java_home}"
 
-required_jars="jaxp_parser_impl"
 %{?with_junit:required_jars="$required_jars junit"}
 %{?with_antlr:required_jars="$required_jars antlr"}
 %{?with_apache_bsf:required_jars="$required_jars bsf jython bsh"}
@@ -539,7 +537,7 @@ required_jars="jaxp_parser_impl"
 %{?with_jsch:required_jars="$required_jars jsch"}
 %{?with_netrexx:required_jars="$required_jars NetRexxC"}
 
-build-jar-repository lib/optional $required_jars
+test -n "$required_jars" && build-jar-repository lib/optional $required_jars
 
 export SHELL=/bin/sh
 
