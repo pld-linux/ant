@@ -48,7 +48,7 @@
 %undefine	with_junit
 %endif
 
-%{?use_default_jdk}
+%{?use_default_jdk:%use_default_jdk 8}
 
 %define		rel	3
 Summary:	Ant build tool for Java
