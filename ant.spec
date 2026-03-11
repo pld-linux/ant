@@ -77,7 +77,7 @@ URL:		https://ant.apache.org/
 %{?with_commons_logging:BuildRequires:	java-commons-logging}
 %{?with_commons_net:BuildRequires:	java-commons-net >= 3.4}
 %{?with_jdepend:BuildRequires:	java-jdepend}
-%{?with_jsch:BuildRequires:	java-jsch >= 0.1.21}
+%{?with_jsch:BuildRequires:	java-jsch >= 0.1.50}
 %{?with_junit:BuildRequires:	java-junit}
 %{?with_apache_log4j:BuildRequires:	java-log4j >= 1.2}
 %{?with_netrexx:BuildRequires:	java-netrexx}
@@ -377,7 +377,7 @@ Summary(fr.UTF-8):	Taches jsch optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania jsch dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	java-jsch
+Requires:	java-jsch >= 0.1.50
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
