@@ -47,6 +47,8 @@
 %undefine	with_javadoc
 %endif
 
+%{?use_default_jdk}
+
 %define		rel	2
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
@@ -83,13 +85,13 @@ URL:		https://ant.apache.org/
 %{?with_apache_regexp:BuildRequires:	java-regexp}
 BuildRequires:	java-xerces
 %{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
-BuildRequires:	jdk >= 1.8
+%buildrequires_jdk
 BuildRequires:	jpackage-utils
 %{?with_apache_bsf:BuildRequires:	jython}
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.300
+BuildRequires:	rpmbuild(macros) >= 2.021
 Requires:	java(jaxp_parser_impl)
 Requires:	java(xml-commons-apis)
 Requires:	jpackage-utils
