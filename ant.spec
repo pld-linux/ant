@@ -69,7 +69,6 @@ Patch2:		no-resourcecount.patch
 URL:		https://ant.apache.org/
 %{?with_antlr:BuildRequires:	antlr}
 %{!?with_bootstrap:BuildRequires:	ant >= 1.10.0}
-%{?with_javamail:BuildRequires:	java(jaf)}
 %{?with_jai:BuildRequires:	java(jai)}
 %{?with_javamail:BuildRequires:	java(javamail)}
 %{?with_apache_bcel:BuildRequires:	java-bcel}
@@ -533,7 +532,7 @@ export JAVA_HOME="%{java_home}"
 %{?with_apache_log4j:required_jars="$required_jars log4j"}
 %{?with_apache_oro:required_jars="$required_jars oro"}
 %{?with_apache_regexp:required_jars="$required_jars regexp"}
-%{?with_javamail:required_jars="$required_jars mail activation"}
+%{?with_javamail:required_jars="$required_jars mail"}
 %{?with_jdepend:required_jars="$required_jars jdepend"}
 %{?with_jsch:required_jars="$required_jars jsch"}
 %{?with_netrexx:required_jars="$required_jars NetRexxC"}
