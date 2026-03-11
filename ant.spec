@@ -50,7 +50,7 @@
 
 %{?use_default_jdk}
 
-%define		rel	2
+%define		rel	3
 Summary:	Ant build tool for Java
 Summary(fr.UTF-8):	Outil de compilation pour java
 Summary(it.UTF-8):	Tool per la compilazione di programmi java
