@@ -18,7 +18,7 @@
 %bcond_without	apache_regexp	# apache-regexp optional task(s)
 %bcond_without	apache_resolver	# apache-resolver optional task(s)
 %bcond_without	commons_logging	# commons-logging optional task(s)
-%bcond_without	commons_net	# commons-net optional task(s)
+%bcond_with	commons_net	# commons-net optional task(s)
 %bcond_without	jai		# jai optional task(s)
 %bcond_without	javamail	# javamail optional task(s)
 %bcond_without	jdepend		# jdepend optional task(s)
@@ -75,7 +75,7 @@ URL:		https://ant.apache.org/
 %{?with_apache_bsf:BuildRequires:	java-beanshell}
 %{?with_apache_bsf:BuildRequires:	java-bsf}
 %{?with_commons_logging:BuildRequires:	java-commons-logging}
-%{?with_commons_net:BuildRequires:	java-commons-net1}
+%{?with_commons_net:BuildRequires:	java-commons-net >= 3.4}
 %{?with_jdepend:BuildRequires:	java-jdepend}
 %{?with_jsch:BuildRequires:	java-jsch >= 0.1.21}
 %{?with_junit:BuildRequires:	java-junit}
@@ -282,7 +282,7 @@ Summary(fr.UTF-8):	Taches commons net optionelles pour %{name}
 Summary(pl.UTF-8):	Opcjonalne zadania commons net dla anta
 Group:		Development/Languages/Java
 Requires:	%{name} = %{version}-%{release}
-Requires:	java-commons-net1
+Requires:	java-commons-net
 Conflicts:	ant-optional-clean
 Conflicts:	ant-optional-full
 
@@ -526,7 +526,7 @@ export JAVA_HOME="%{java_home}"
 %{?with_apache_bsf:required_jars="$required_jars bsf jython bsh"}
 %{?with_apache_resolver:required_jars="$required_jars resolver"}
 %{?with_commons_logging:required_jars="$required_jars commons-logging"}
-%{?with_commons_net:required_jars="$required_jars commons-net1"}
+%{?with_commons_net:required_jars="$required_jars commons-net"}
 %{?with_jai:required_jars="$required_jars jai_core jai_codec"}
 %{?with_apache_bcel:required_jars="$required_jars bcel"}
 %{?with_apache_log4j:required_jars="$required_jars log4j"}
@@ -599,7 +599,7 @@ echo "commons-logging ant/ant-commons-logging" > $RPM_BUILD_ROOT%{_sysconfdir}/%
 
 %if %{with commons_net}
 install build/lib/%{name}-commons-net.jar $RPM_BUILD_ROOT%{_javadir}/%{name}/%{name}-commons-net-%{version}.jar
-echo "commons-net1 ant/ant-commons-net" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/commons-net
+echo "commons-net ant/ant-commons-net" > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}.d/commons-net
 %endif
 
 %if %{with jai}
