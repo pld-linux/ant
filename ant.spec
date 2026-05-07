@@ -86,7 +86,6 @@ URL:		https://ant.apache.org/
 %{?with_apache_resolver:BuildRequires:	java-xml-commons-resolver}
 %buildrequires_jdk
 BuildRequires:	jpackage-utils
-%{?with_apache_bsf:BuildRequires:	jython}
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpm-pythonprov
@@ -521,7 +520,7 @@ export JAVA_HOME="%{java_home}"
 
 %{?with_junit:required_jars="$required_jars junit"}
 %{?with_antlr:required_jars="$required_jars antlr"}
-%{?with_apache_bsf:required_jars="$required_jars bsf jython bsh"}
+%{?with_apache_bsf:required_jars="$required_jars bsf bsh"}
 %{?with_apache_resolver:required_jars="$required_jars resolver"}
 %{?with_commons_logging:required_jars="$required_jars commons-logging"}
 %{?with_commons_net:required_jars="$required_jars commons-net"}
